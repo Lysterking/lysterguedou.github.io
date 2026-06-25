@@ -528,7 +528,7 @@
                 </button>
 
                 <button class="project-button" onclick="loadProject(1)">
-                    <img src="images/coquilles_saint_jacques.jpg" alt="">
+                    <img src="images/decoquillateur/CAO_carroussel.png" alt="">
                     <div>
                         <strong>Dispositif Mécatronique R&D — MatandSim</strong>
                         <span>Stage de fin d’étude</span>
@@ -537,7 +537,7 @@
                 </button>
 
                 <button class="project-button" onclick="loadProject(2)">
-                    <img src="images/maquette_tri.jpg" alt="">
+                    <img src="images/maquette5.0/maquette_tri.jpg" alt="">
                     <div>
                         <strong>Maquette 5.0 — Tri Automatisé</strong>
                         <span>Projet industriel</span>
@@ -613,7 +613,7 @@
         {
             title: "Diagnostic Logiciel & Maintenance Prédictive — IETR",
             mediaType: "video",
-            media: "videos/robot_ietr.mp4",
+            media: "https://drive.google.com/file/d/ID_VIDEO/preview",
             tags: ["STM32", "FreeRTOS", "Python", "I²C", "UART", "Maintenance"],
             context: "Fiabilisation d’une flotte de robots pédagogiques sujets à des pannes matérielles aléatoires : capteurs, moteurs, connectique, écran LCD, bus de communication.",
             role: "Responsable du développement firmware de diagnostic embarqué et de l’application de supervision PC.",
@@ -635,8 +635,8 @@
         },
         {
             title: "Dispositif Mécatronique R&D — MatandSim",
-            mediaType: "image",
-            media: "images/coquilles_saint_jacques.jpg",
+            mediaType: "video",
+            media: "https://1drv.ms/v/c/61d93174a0cd392e/IQCSLtejELfXSYzlprZafWUiAQmvJir8nxaxITo6p0pnk5E?embed=1"
             tags: ["R&D", "Mécatronique", "Prototypage", "CAO", "Conception mécanique"],
             context: "Développement d’un dispositif automatisé destiné à l’ouverture mécanique des coquilles Saint-Jacques.",
             role: "Chef de projet R&D sur la conception et le prototypage du système.",
@@ -648,15 +648,15 @@
             ],
             results: "Obtention d’un prototype fonctionnel permettant de valider les principes mécaniques d’ouverture automatisée.",
             gallery: [
-                "images/coquilles_saint_jacques.jpg",
-                "images/prototype_matandsim.jpg",
-                "images/cao_matandsim.jpg"
+                "images/decoquillateur/CAO_carrousel.png",
+                "images/decoquillateur/photo_decoquillateur.jpg",
+                 media: "https://1drv.ms/v/c/61d93174a0cd392e/IQBLgD0ODE_DTp_d3fmfqVwcAUxKqiDEyEokc0wzAUZGvW0?e=1Z9KaI"
             ]
         },
         {
             title: "Mise en place d’une Maquette 5.0 — Tri Automatisé",
             mediaType: "image",
-            media: "images/maquette_tri.jpg",
+            media: "images/maquette5.0/maquette_tri.jpg",
             tags: ["TIA Portal", "Node-RED", "Inventor", "Automatisme", "Industrie 5.0"],
             context: "Évolution d’un système de tri de roues de skateboard vers une maquette intelligente et supervisée.",
             role: "Prise en charge de la conception mécanique, de l’automatisation et de la supervision.",
@@ -668,10 +668,11 @@
             ],
             results: "Création d’une ligne de tri fonctionnelle, interconnectée et exploitable pour la démonstration industrielle.",
             gallery: [
-                "images/maquette_tri.jpg",
-                "images/node_red.jpg",
-                "images/tia_portal.jpg",
-                "images/skate_tri.jpg"
+                "images/maquette5.0/maquette_tri.jpg",
+                "images/maquette5.0/system_control_tri.jpg",
+                "images/maquette5.0/tri_PAHM_interface.jpg",
+                 "images/maquette5.0/tri_desagn.jpg",
+                 "images/maquette5.0/tri_interface_IHM.jpg",
             ]
         },
         {
@@ -725,12 +726,15 @@
 
         const mediaContainer = document.getElementById("mainMedia");
 
-        if (project.mediaType === "video") {
+            if (project.mediaType === "video") {
             mediaContainer.innerHTML = `
-                <video controls autoplay muted loop playsinline>
-                    <source src="${project.media}" type="video/mp4">
-                    Votre navigateur ne supporte pas la lecture vidéo.
-                </video>
+                <iframe 
+                    src="${project.media}"
+                    width="100%"
+                    height="100%"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
             `;
         } else {
             mediaContainer.innerHTML = `
