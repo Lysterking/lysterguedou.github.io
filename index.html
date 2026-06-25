@@ -17,7 +17,13 @@
     --shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     margin: 0;
@@ -32,6 +38,8 @@ body {
     grid-template-columns: 90px 1fr;
 }
 
+/* ================= MENU GAUCHE ================= */
+
 aside {
     background: linear-gradient(180deg, #0046c7, #002b7a);
     color: white;
@@ -39,6 +47,7 @@ aside {
     position: sticky;
     top: 0;
     height: 100vh;
+    z-index: 100;
 }
 
 .side-menu {
@@ -53,6 +62,7 @@ aside {
     text-decoration: none;
     font-size: 0.78rem;
     text-align: center;
+    cursor: pointer;
 }
 
 .side-icon {
@@ -61,10 +71,20 @@ aside {
     margin-bottom: 0.3rem;
 }
 
+/* ================= HEADER ================= */
+
 header {
     position: relative;
-    min-height: 330px;
-    background: linear-gradient(135deg, #0b4edb 0%, #00348f 70%);
+    min-height: 390px;
+    background:
+        linear-gradient(
+            rgba(11, 78, 219, 0.78),
+            rgba(0, 52, 143, 0.78)
+        ),
+        url("images/header_robotics.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     overflow: hidden;
 }
 
@@ -72,9 +92,9 @@ header::after {
     content: "";
     position: absolute;
     right: -80px;
-    bottom: -110px;
+    bottom: -120px;
     width: 78%;
-    height: 310px;
+    height: 320px;
     background: white;
     transform: skewY(7deg);
 }
@@ -90,9 +110,11 @@ header::after {
 }
 
 .photo-zone {
-    background: #dbeeff;
+    background: rgba(219, 238, 255, 0.92);
     padding: 2rem;
     text-align: center;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
 }
 
 .profile-photo {
@@ -104,7 +126,9 @@ header::after {
 }
 
 .hero-text {
-    background: rgba(255,255,255,0.94);
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
     padding: 2rem;
     border-radius: 10px;
 }
@@ -118,6 +142,7 @@ header::after {
     margin: 0;
     color: var(--blue);
     font-size: 1.55rem;
+    line-height: 1.3;
 }
 
 .hero-text p {
@@ -147,8 +172,11 @@ header::after {
     border: 1px solid var(--blue);
 }
 
+/* ================= COMPÉTENCES ================= */
+
 .skills-card {
-    background: white;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
     border-radius: 14px;
     padding: 1.5rem;
     box-shadow: var(--shadow);
@@ -180,10 +208,16 @@ header::after {
     place-items: center;
 }
 
+.skill-item strong {
+    display: block;
+}
+
 .skill-item span {
     font-size: 0.82rem;
     color: var(--muted);
 }
+
+/* ================= CONTENU ================= */
 
 .content {
     display: grid;
@@ -271,6 +305,7 @@ header::after {
     height: 100%;
     object-fit: cover;
     border: none;
+    border-radius: 10px;
 }
 
 .project-title {
@@ -354,10 +389,42 @@ header::after {
     cursor: pointer;
     font-weight: bold;
     font-size: 0.8rem;
+    text-align: center;
+    padding: 0.5rem;
 }
 
 .gallery-video:hover {
     background: var(--dark-blue);
+}
+
+/* ================= CONTACT ================= */
+
+.contact-box {
+    position: fixed;
+    bottom: 30px;
+    left: 120px;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.18);
+    width: 300px;
+    display: none;
+    z-index: 999;
+    border: 1px solid var(--border);
+}
+
+.contact-box h3 {
+    margin-top: 0;
+    color: var(--blue);
+}
+
+.contact-box p {
+    margin: 0.7rem 0;
+    color: #374151;
+}
+
+.contact-box a {
+    margin-top: 0.7rem;
 }
 
 footer {
@@ -366,33 +433,214 @@ footer {
     color: var(--muted);
 }
 
-@media (max-width: 1100px) {
-    .hero,
+/* ================= RESPONSIVE TABLETTE ================= */
+
+@media (max-width: 1200px) {
+    .hero {
+        grid-template-columns: 240px 1fr;
+    }
+
+    .skills-card {
+        grid-column: 1 / -1;
+    }
+
     .content {
-        grid-template-columns: 1fr;
+        grid-template-columns: 320px 1fr;
         padding: 1.5rem;
-    }
-
-    .projects-list {
-        position: static;
-    }
-
-    .detail-grid {
-        grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 700px) {
+/* ================= RESPONSIVE SMARTPHONE / TABLETTE ================= */
+
+@media (max-width: 900px) {
     .page {
         grid-template-columns: 1fr;
     }
 
     aside {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        padding: 0;
+        z-index: 1000;
+    }
+
+    .side-menu {
+        height: 70px;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 0;
+    }
+
+    .side-menu a {
+        font-size: 0.7rem;
+    }
+
+    .side-icon {
+        font-size: 1.25rem;
+        margin-bottom: 0.1rem;
+    }
+
+    main {
+        padding-bottom: 80px;
+    }
+
+    header {
+        min-height: auto;
+    }
+
+    header::after {
         display: none;
     }
 
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 1.2rem;
+        gap: 1rem;
+    }
+
+    .photo-zone {
+        padding: 1.2rem;
+    }
+
+    .profile-photo {
+        width: 145px;
+        height: 145px;
+    }
+
+    .hero-text {
+        padding: 1.3rem;
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 1.7rem;
+    }
+
+    .hero-text h2 {
+        font-size: 1.2rem;
+    }
+
+    .hero-links {
+        justify-content: center;
+    }
+
+    .skills-card {
+        padding: 1.2rem;
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .projects-list {
+        position: static;
+        order: 1;
+    }
+
+    .project-detail {
+        order: 2;
+    }
+
+    .project-button {
+        grid-template-columns: 60px 1fr 15px;
+    }
+
+    .project-button img {
+        width: 60px;
+        height: 55px;
+    }
+
     .main-media {
-        height: 240px;
+        height: 260px;
+    }
+
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .contact-box {
+        left: 15px;
+        right: 15px;
+        bottom: 90px;
+        width: auto;
+    }
+}
+
+/* ================= PETITS SMARTPHONES ================= */
+
+@media (max-width: 550px) {
+    .hero {
+        padding: 1rem;
+    }
+
+    .hero-text h1 {
+        font-size: 1.45rem;
+    }
+
+    .hero-text h2 {
+        font-size: 1.05rem;
+    }
+
+    .hero-text p {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .skills-card h3,
+    .projects-list h2 {
+        font-size: 1.1rem;
+    }
+
+    .skill-item {
+        grid-template-columns: 36px 1fr;
+    }
+
+    .skill-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .project-title {
+        font-size: 1.25rem;
+    }
+
+    .project-button strong {
+        font-size: 0.82rem;
+    }
+
+    .project-button span {
+        font-size: 0.72rem;
+    }
+
+    .main-media {
+        height: 210px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid img,
+    .gallery-video {
+        height: 75px;
+    }
+
+    .info-block p,
+    .info-block li {
+        font-size: 0.9rem;
     }
 }
 </style>
@@ -406,7 +654,7 @@ footer {
         <a href="#"><span class="side-icon">⌂</span>Accueil</a>
         <a href="#projets"><span class="side-icon">▣</span>Projets</a>
         <a href="#competences"><span class="side-icon">⚙</span>Compétences</a>
-        <a href="mailto:guedoulyster@gmail.com"><span class="side-icon">✉</span>Contact</a>
+        <a onclick="toggleContactBox()"><span class="side-icon">✉</span>Contact</a>
     </nav>
 </aside>
 
@@ -459,7 +707,7 @@ footer {
     </button>
 
     <button class="project-button" onclick="loadProject(1)">
-        <img src="images/decoquillateur/CAO_carrousel.png" alt="">
+        <img src="images/decoquillateur/CAO_carroussel.png" alt="">
         <div><strong>Dispositif Mécatronique R&D — MatandSim</strong><span>Stage de fin d’étude</span></div>
         <span>›</span>
     </button>
@@ -477,8 +725,8 @@ footer {
     </button>
 
     <button class="project-button" onclick="loadProject(4)">
-        <img src="images/regulation_ia.jpg" alt="">
-        <div><strong>Régulation par IA</strong><span>Projet académique</span></div>
+        <img src="images/Regulation_IA/bloc_sytem3D.png" alt="">
+        <div><strong>Asservissement intelligent par IA</strong><span>Projet Master 2</span></div>
         <span>›</span>
     </button>
 </div>
@@ -510,6 +758,13 @@ footer {
 © 2026 Lyster GUEDOU — Portfolio ingénierie mécatronique & systèmes embarqués
 </footer>
 
+<div id="contactBox" class="contact-box">
+    <h3>Mes coordonnées</h3>
+    <p>📧 guedoulyster@gmail.com</p>
+    <p>📱 07 52 07 68 07</p>
+    <a href="mailto:guedoulyster@gmail.com" class="btn">Me contacter</a>
+</div>
+
 </main>
 </div>
 
@@ -517,8 +772,8 @@ footer {
 const projects = [
     {
         title: "Diagnostic Logiciel & Maintenance Prédictive — IETR",
-        mediaType: "video",
-        media: "https://drive.google.com/file/d/ID_VIDEO/preview",
+        mediaType: "image",
+        media: "images/robot_ietr.jpg",
         tags: ["STM32", "FreeRTOS", "Python", "I²C", "UART", "Maintenance"],
         context: "Fiabilisation d’une flotte de robots pédagogiques sujets à des pannes matérielles aléatoires : capteurs, moteurs, connectique, écran LCD, bus de communication.",
         role: "Responsable du développement firmware de diagnostic embarqué et de l’application de supervision PC.",
@@ -539,7 +794,7 @@ const projects = [
     {
         title: "Dispositif Mécatronique R&D — MatandSim",
         mediaType: "image",
-        media:  "images/decoquillateur/CAO_carroussel.png",
+        media: "images/decoquillateur/CAO_carroussel.png",
         tags: ["R&D", "Mécatronique", "Prototypage", "CAO", "Conception mécanique"],
         context: "Développement d’un dispositif automatisé destiné à l’ouverture mécanique des coquilles Saint-Jacques.",
         role: "Chef de projet R&D sur la conception et le prototypage du système.",
@@ -606,21 +861,23 @@ const projects = [
     {
         title: "Régulation de vitesse et asservissement thermique par IA",
         mediaType: "image",
-        media: "images/regulation_ia.jpg",
-        tags: ["MATLAB", "Simulink", "IA", "Reinforcement Learning", "Contrôle-commande"],
-        context: "Développement d’un système thermomécanique régulé par intelligence artificielle.",
-        role: "Modélisation du système, conception de la stratégie de régulation et préparation à l’implémentation embarquée.",
+        media: "images/Regulation_IA/bloc_sytem3D.png",
+        tags: ["Contrôle-commande", "PID adaptatif", "Reinforcement Learning", "DDPG", "MATLAB / Simulink", "PWM"],
+        context: "Développement d’une stratégie de commande intelligente pour un système thermo-méca-fluide combinant ventilation, chauffage et acquisition de température.",
+        role: "Modélisation du système, conception de stratégies de régulation et comparaison entre PID classique, réseaux de neurones et apprentissage par renforcement.",
         actions: [
-            "Modélisation du système sous MATLAB/Simulink.",
-            "Test d’une approche par apprentissage par renforcement.",
-            "Analyse du comportement dynamique du système.",
-            "Préparation du modèle pour un contrôle temps réel."
+            "Modélisation du comportement dynamique du système sous MATLAB / Simulink.",
+            "Mise en place d’un correcteur PID classique comme référence.",
+            "Optimisation dynamique des gains Kp, Ki et Kd par réseaux de neurones.",
+            "Implémentation d’un agent DDPG pour apprendre une politique de contrôle continue.",
+            "Analyse comparative des performances : erreur, stabilité, dépassement et temps de réponse."
         ],
-        results: "Projet démontrant la capacité à combiner contrôle-commande, modélisation dynamique et intelligence artificielle.",
+        results: "Le projet a montré l’intérêt des approches intelligentes pour améliorer l’adaptabilité du système face aux perturbations et préparer une logique exploitable pour du contrôle temps réel.",
         gallery: [
-            { type: "image", src: "images/regulation_ia.jpg" },
-            { type: "image", src: "images/matlab_model.jpg" },
-            { type: "image", src: "images/simulink_schema.jpg" }
+            { type: "image", src: "images/Regulation_IA/bloc_sytem3D.png" },
+            { type: "image", src: "images/Regulation_IA/systeme_reg.png" },
+            { type: "image", src: "images/Regulation_IA/systeme_complet.jpg" },
+            { type: "video", src: "https://drive.google.com/file/d/1o5Y4AOC0cafkNb2ARcttfNodYjX6sb3f/preview" }
         ]
     }
 ];
@@ -671,7 +928,7 @@ function loadProject(index) {
             if (media.type === "video") {
                 return `
                     <div class="gallery-video" onclick="displayMedia('${media.src}', 'video', '${project.title}')">
-                        ▶ VIDÉO
+                        🎥 Voir la vidéo
                     </div>
                 `;
             }
@@ -684,6 +941,16 @@ function loadProject(index) {
             `;
         })
         .join("");
+}
+
+function toggleContactBox() {
+    const box = document.getElementById("contactBox");
+
+    if (box.style.display === "block") {
+        box.style.display = "none";
+    } else {
+        box.style.display = "block";
+    }
 }
 
 loadProject(0);
