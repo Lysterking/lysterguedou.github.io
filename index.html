@@ -126,13 +126,28 @@
                     Votre navigateur ne supporte pas la lecture de vidéos.
                 </video>
                 <div class="project-content">
-                    <h3>Diagnostic Logiciel par IA — IETR Rennes</h3>
-                    <p>Développement d'une solution logicielle embarquée de diagnostic et de maintenance prédictive pour robots pédagogiques.</p>
+                    <h3>Diagnostic Logiciel & Maintenance Prédictive — IETR</h3>
+                    
+                    <div style="font-size: 0.95rem; color: #495057; margin-bottom: 1rem; line-height: 1.5;">
+                        <p style="margin: 0.5rem 0;"><strong>CONTEXTE :</strong> Fiabilisation d'une flotte de robots pédagogiques d'infotraitement sujets à des pannes matérielles aléatoires (capteurs, moteurs, connectique).</p>
+                        
+                        <p style="margin: 0.5rem 0;"><strong>MON RÔLE :</strong> Responsable de l'architecture firmware de diagnostic embarqué et du développement de l'application de supervision PC.</p>
+                        
+                        <p style="margin: 0.5rem 0;"><strong>ACTIONS RÉALISÉES :</strong></p>
+                        <ul style="padding-left: 1.2rem; margin: 0.4rem 0;">
+                            <li>Conception d'une architecture multitâche sous <strong>FreeRTOS</strong> (gestion des priorités, mutex pour l'UART/$I^2C$, et queues de données).</li>
+                            <li>Développement des routines de test bas niveau pour l'écran LCD, l'extenseur de broches MCP23017 et les drivers moteurs (rampe PWM progressive).</li>
+                            <li>Création d'une interface graphique de supervision en <strong>Python (Tkinter/Serial)</strong> automatisant l'analyse des logs et le suivi de santé du robot.</li>
+                        </ul>
+                        
+                        <p style="margin: 0.5rem 0;"><strong>RÉSULTATS :</strong> Réduction drastique du temps d'identification des pannes électroniques et mise en place d'une traçabilité complète de l'état du matériel.</p>
+                    </div>
+
                     <div class="tags">
-                        <span class="tag">STM32</span>
+                        <span class="tag">STM32 (C)</span>
                         <span class="tag">FreeRTOS</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">IA (Machine Learning)</span>
+                        <span class="tag">Python (Supervision)</span>
+                        <span class="tag">Bus I2C / UART</span>
                     </div>
                 </div>
             </div>
