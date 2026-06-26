@@ -658,6 +658,48 @@ footer {
         font-size: 0.9rem;
     }
 }
+
+
+ .feedback-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.feedback-box{
+    background:white;
+    width:90%;
+    max-width:500px;
+    padding:2rem;
+    border-radius:12px;
+    position:relative;
+}
+
+.feedback-box input,
+.feedback-box select,
+.feedback-box textarea{
+    width:100%;
+    padding:12px;
+    margin-bottom:1rem;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.close-btn{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:1.5rem;
+    cursor:pointer;
+}
+
+.feedback-btn{
+    background:#0f172a;
+}   
 </style>
 </head>
 
@@ -699,6 +741,9 @@ footer {
                class="btn"
                onclick="trackContactClick()">
                 Me contacter
+            </a>
+            <a href="#feedback" class="btn feedback-btn" onclick="openFeedback()">
+                Laisser un retour / Opportunité
             </a>
             
             <a href="CV_Lyster_GUEDOU.pdf"
@@ -1011,10 +1056,52 @@ function trackContactClick() {
     });
 }
 
-   
+ function openFeedback() {
+    document.getElementById("feedbackModal").style.display = "flex";
+
+    gtag('event', 'feedback_open', {
+        event_category: 'engagement',
+        event_label: 'Feedback Form'
+    });
+}
+
+function closeFeedback() {
+    document.getElementById("feedbackModal").style.display = "none";
+} 
+
+ function trackFeedbackSubmit() {
+    gtag('event', 'feedback_submit', {
+        event_category: 'engagement',
+        event_label: 'Feedback Form Submitted'
+    });
+}   
+    
 loadProject(0);
 </script>
+<div id="feedbackModal" class="feedback-modal">
+    <div class="feedback-box">
+        <span class="close-btn" onclick="closeFeedback()">&times;</span>
+        <h3>Retour / Opportunité</h3>
 
+        <form action="https://formspree.io/f/xvzjarpp" method="POST">
+            <input type="text" name="name" placeholder="Nom" required>
+            <input type="text" name="company" placeholder="Entreprise">
+            <input type="email" name="email" placeholder="Email" required>
+            
+            <select name="type">
+                <option value="">Type de contact</option>
+                <option>Recrutement</option>
+                <option>Collaboration</option>
+                <option>Stage</option>
+                <option>Autre</option>
+            </select>
+
+            <textarea name="message" rows="5" placeholder="Votre message..." required></textarea>
+
+            <button type="submit" class="btn">Envoyer</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>
 ```
