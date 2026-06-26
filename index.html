@@ -695,8 +695,18 @@ footer {
         </p>
 
         <div class="hero-links">
-            <a href="mailto:guedoulyster@gmail.com" class="btn">Me contacter</a>
-            <a href="CV_Lyster_GUEDOU.pdf" class="btn secondary" target="_blank">Télécharger mon CV</a>
+            <a href="mailto:guedoulyster@gmail.com"
+               class="btn"
+               onclick="trackContactClick()">
+                Me contacter
+            </a>
+            
+            <a href="CV_Lyster_GUEDOU.pdf"
+                   class="btn secondary"
+                   target="_blank"
+                   onclick="trackCVDownload()">
+                    Télécharger mon CV
+                </a>
         </div>
     </div>
 
@@ -849,9 +859,9 @@ const projects = [
         gallery: [
             { type: "image", src: "images/maquette5.0/maquette_tri.jpg" },
             { type: "image", src: "images/maquette5.0/system_control_tri.jpg" },
-            { type: "image", src: "images/maquette5.0/tri_PAHM_interface.jpg" },
+            { type: "image", src: "images/maquette5.0/tri_PAHM_intercafe.jpg" },
             { type: "image", src: "images/maquette5.0/tri_desagn.jpg" },
-            { type: "image", src: "images/maquette5.0/tri_interface_IHM.jpg" },
+            { type: "image", src: "images/maquette5.0/tri_intercafe_IHM.jpg" },
             { type: "video", src: "https://drive.google.com/file/d/1s_RzMaZa_VVdpBYYXUNfZhjX3QZMeAxI/preview" }
         ]
     },
@@ -894,7 +904,7 @@ const projects = [
         results: "Le projet a montré l’intérêt des approches intelligentes pour améliorer l’adaptabilité du système face aux perturbations et préparer une logique exploitable pour du contrôle temps réel.",
         gallery: [
             { type: "image", src: "images/Regulation_IA/bloc_sytem3D.png" },
-            { type: "image", src: "images/Regulation_IA/systeme_reg.png" },
+            { type: "image", src: "images/Regulation_IA/system_reg.png" },
             { type: "image", src: "images/Regulation_IA/systeme_complet.jpg" },
             { type: "video", src: "https://drive.google.com/file/d/1o5Y4AOC0cafkNb2ARcttfNodYjX6sb3f/preview" }
         ]
@@ -902,6 +912,15 @@ const projects = [
 ];
 
 function displayMedia(src, type, title = "Média projet") {
+
+     if (type === "video") {
+        gtag('event', 'video_play', {
+            event_category: 'media',
+            event_label: title
+        });
+    }
+
+
     const mediaContainer = document.getElementById("mainMedia");
 
     if (type === "video") {
@@ -922,6 +941,12 @@ function displayMedia(src, type, title = "Média projet") {
 
 function loadProject(index) {
     const project = projects[index];
+
+    // Tracking Google Analytics
+    gtag('event', 'view_project', {
+        event_category: 'projects',
+        event_label: project.title
+    });
 
     document.querySelectorAll(".project-button").forEach((btn, i) => {
         btn.classList.toggle("active", i === index);
@@ -972,6 +997,21 @@ function toggleContactBox() {
     }
 }
 
+function trackCVDownload() {
+    gtag('event', 'download_cv', {
+        event_category: 'engagement',
+        event_label: 'CV Portfolio'
+    });
+}
+
+function trackContactClick() {
+    gtag('event', 'contact_click', {
+        event_category: 'engagement',
+        event_label: 'Contact direct'
+    });
+}
+
+   
 loadProject(0);
 </script>
 
