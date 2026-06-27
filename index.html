@@ -643,6 +643,39 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+
+    .project-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #f3f4f6;
+    border: 2px dashed #cbd5e1;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #4b5563;
+    font-weight: 700;
+    font-size: 1.4rem;
+    padding: 1rem;
+}
+
+.project-thumb-placeholder {
+    width: 70px;
+    height: 60px;
+    background: #f3f4f6;
+    border: 1px dashed #cbd5e1;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #4b5563;
+    font-size: 0.55rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
 </style>
 </head>
 
@@ -969,11 +1002,11 @@ const projects = {
                 "Développer un contrôle vocal simple.",
                 "Tester la navigation avec évitement d’obstacles."
             ],
-            results: "Le projet sert de vitrine autour de la robotique mobile, de la vision embarquée et de l’intégration système.",
+            results:[ "Le projet sert de vitrine autour de la robotique mobile, de la vision embarquée et de l’intégration système."
+                        "Les images et vidéos seront ajoutées dès que les premiers tests concrets seront finalisés."
+                     ],
             gallery: [
-                { type: "image", src: "images/robot_autonome.jpg" },
-                { type: "image", src: "images/camera_pi.jpg" },
-                { type: "image", src: "images/carte_navigation.jpg" }
+                
             ]
         },
         {
@@ -1064,7 +1097,9 @@ projects.en = [
             "Develop a simple voice control feature.",
             "Test navigation with obstacle avoidance."
         ],
-        results: "The project is a showcase for mobile robotics, embedded vision and system integration."
+        results:[ "The project is a showcase for mobile robotics, embedded vision and system integration."
+                        " Images and videos will be added once the first concrete tests are completed."
+                 ],
     },
     {
         ...projects.fr[4],
@@ -1114,7 +1149,14 @@ function displayMedia(src, type, title = "Media") {
             event_label: title
         });
     }
-
+if (type === "placeholder") {
+    mediaContainer.innerHTML = `
+        <div class="project-placeholder">
+            EN COURS DE DÉVELOPPEMENT
+        </div>
+    `;
+    return;
+}
     const mediaContainer = document.getElementById("mainMedia");
 
     if (type === "video") {
@@ -1177,8 +1219,10 @@ function loadProject(index) {
             }
 
             return `
-                <img src="${media.src}" alt="Media" onclick="trackGalleryClick('${project.title}', 'image'); displayMedia('${media.src}', 'image', '${project.title}')">
-            `;
+                ${project.thumbType === "placeholder"
+    ? `<div class="project-thumb-placeholder">EN COURS<br>DE DÉVELOPPEMENT</div>`
+    : `<img src="${project.thumb}" alt="">`
+}
         })
         .join("");
 }
