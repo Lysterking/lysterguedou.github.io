@@ -58,31 +58,30 @@ aside {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.35rem;
+    gap: 1.25rem;
 }
 
 .side-menu a {
     color: white;
     text-decoration: none;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     text-align: center;
     cursor: pointer;
 }
 
 .side-icon {
     display: block;
-    font-size: 1.35rem;
-    margin-bottom: 0.25rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.2rem;
 }
 
 .linkedin-icon {
     font-weight: 800;
-    font-size: 1.15rem;
+    font-size: 1rem;
     border: 2px solid white;
     border-radius: 4px;
-    width: 25px;
-    height: 25px;
-    line-height: 20px;
+    width: 24px;
+    height: 24px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -113,11 +112,26 @@ header::after {
     transform: skewY(7deg);
 }
 
+.lang-toggle {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    z-index: 20;
+    background: white;
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    border-radius: 999px;
+    padding: 0.5rem 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+}
+
 .hero {
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: 260px minmax(500px, 760px);
+    grid-template-columns: 260px minmax(500px, 700px);
     gap: 2rem;
     align-items: center;
     padding: 2.5rem 3rem;
@@ -200,74 +214,82 @@ header::after {
 
 .content {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 350px 1fr;
     gap: 1.5rem;
     padding: 2rem 3rem 4rem;
 }
 
-.section-title {
-    color: var(--blue);
-    margin: 0;
-}
-
-.project-block {
+.projects-list,
+.project-detail {
     background: white;
-    border: 1px solid var(--border);
     border-radius: 12px;
     box-shadow: var(--shadow);
-    margin-bottom: 1.2rem;
-    overflow: hidden;
+    border: 1px solid var(--border);
 }
 
-.project-block summary {
-    cursor: pointer;
-    list-style: none;
-    display: grid;
-    grid-template-columns: 90px 1fr 30px;
-    gap: 1rem;
-    align-items: center;
-    padding: 1rem;
-    background: #f8fbff;
+.projects-list {
+    padding: 1.2rem;
+    height: fit-content;
+    position: sticky;
+    top: 1rem;
 }
 
-.project-block summary::-webkit-details-marker {
-    display: none;
-}
-
-.project-block summary img {
-    width: 90px;
-    height: 70px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.project-block summary strong {
-    display: block;
-    color: #111827;
-    font-size: 1rem;
-}
-
-.project-block summary span {
-    color: var(--muted);
-    font-size: 0.85rem;
-}
-
-.arrow {
+.projects-list h2 {
+    margin-top: 0;
     color: var(--blue);
-    font-size: 1.4rem;
 }
 
-.project-body {
-    padding: 1.5rem;
+.project-button {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 70px 1fr 20px;
+    gap: 0.8rem;
+    align-items: center;
+    text-align: left;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.7rem;
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.project-button:hover,
+.project-button.active {
+    border-color: var(--blue);
+    background: #f7fbff;
+    transform: translateX(4px);
+}
+
+.project-button img {
+    width: 70px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.project-button strong {
+    font-size: 0.9rem;
+    display: block;
+}
+
+.project-button span {
+    font-size: 0.78rem;
+    color: var(--muted);
+}
+
+.project-detail {
+    padding: 1.3rem;
 }
 
 .main-media {
     width: 100%;
-    height: 380px;
+    height: 360px;
     background: #111827;
     border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .main-media img,
@@ -276,11 +298,12 @@ header::after {
     height: 100%;
     object-fit: cover;
     border: none;
+    border-radius: 10px;
 }
 
-.project-body h2 {
-    color: #111827;
-    margin-bottom: 0.6rem;
+.project-title {
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
 }
 
 .tags {
@@ -300,46 +323,76 @@ header::after {
     font-weight: 600;
 }
 
-.project-body h4 {
-    color: var(--blue);
-    margin-bottom: 0.35rem;
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: 1.5rem;
 }
 
-.project-body p,
-.project-body li {
+.info-block h4 {
+    color: var(--blue);
+    margin-bottom: 0.3rem;
+}
+
+.info-block p,
+.info-block li {
     color: #374151;
-    line-height: 1.6;
     font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.gallery {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.gallery h4 {
+    margin-top: 0;
+    color: var(--blue);
 }
 
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.7rem;
-    margin-top: 1rem;
+    gap: 0.6rem;
 }
 
 .gallery-grid img,
 .gallery-video {
     width: 100%;
-    height: 95px;
-    border-radius: 8px;
+    height: 80px;
     object-fit: cover;
+    border-radius: 6px;
+}
+
+.gallery-grid img {
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.gallery-grid img:hover {
+    border-color: var(--blue);
 }
 
 .gallery-video {
     background: var(--blue);
     color: white;
     display: flex;
-    align-items: center;
     justify-content: center;
-    text-decoration: none;
-    font-weight: 700;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.8rem;
     text-align: center;
     padding: 0.5rem;
 }
 
-/* CONTACT */
+.gallery-video:hover {
+    background: var(--dark-blue);
+}
+
+/* CONTACT ET MODALES */
 
 .contact-box {
     position: fixed;
@@ -365,14 +418,6 @@ header::after {
     color: #374151;
 }
 
-footer {
-    text-align: center;
-    padding: 2rem;
-    color: var(--muted);
-}
-
-/* MODALES */
-
 .modal {
     display: none;
     position: fixed;
@@ -387,7 +432,7 @@ footer {
 .modal-box {
     background: white;
     width: 90%;
-    max-width: 720px;
+    max-width: 760px;
     max-height: 88vh;
     overflow-y: auto;
     padding: 2rem;
@@ -420,54 +465,26 @@ footer {
     font-family: inherit;
 }
 
-/* OUTILS */
-
-.tools-grid {
-    display: grid;
-    gap: 1rem;
-}
-
-.tool-card {
+.tool-card,
+.timeline-item {
     border-left: 4px solid var(--blue);
     background: #f8fbff;
     border-radius: 10px;
     padding: 1rem;
+    margin-bottom: 1rem;
 }
 
-.tool-card h4 {
-    margin: 0 0 0.4rem;
-    color: var(--blue);
-}
-
-.tool-card p {
-    margin: 0;
-    color: #374151;
-    line-height: 1.5;
-}
-
-/* ACQUIS */
-
-.acquis-intro {
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-.timeline {
-    display: grid;
-    gap: 1.2rem;
-}
-
-.timeline-item {
-    padding: 1.1rem 1.2rem;
-    border-left: 4px solid var(--blue);
-    background: #f8fbff;
-    border-radius: 10px;
-}
-
+.tool-card h4,
 .timeline-item h4 {
     margin: 0 0 0.4rem;
     color: var(--blue);
+}
+
+.tool-card p,
+.timeline-item p {
+    margin: 0;
+    color: #374151;
+    line-height: 1.5;
 }
 
 .period {
@@ -485,6 +502,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
+    margin-top: 0.7rem;
 }
 
 .acquis-tags span {
@@ -494,6 +512,16 @@ footer {
     border: 1px solid #dbeafe;
     border-radius: 999px;
     padding: 0.25rem 0.55rem;
+}
+
+.fallback-projects {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
 }
 
 /* RESPONSIVE */
@@ -521,11 +549,11 @@ footer {
     }
 
     .side-menu a {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
     }
 
     .side-icon {
-        font-size: 1.05rem;
+        font-size: 1rem;
     }
 
     main {
@@ -560,15 +588,20 @@ footer {
     }
 
     .content {
+        grid-template-columns: 1fr;
         padding: 1rem;
+    }
+
+    .projects-list {
+        position: static;
     }
 
     .main-media {
         height: 260px;
     }
 
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .detail-grid {
+        grid-template-columns: 1fr;
     }
 
     .contact-box {
@@ -593,12 +626,12 @@ footer {
         text-align: center;
     }
 
-    .project-block summary {
-        grid-template-columns: 65px 1fr 20px;
+    .project-button {
+        grid-template-columns: 60px 1fr 15px;
     }
 
-    .project-block summary img {
-        width: 65px;
+    .project-button img {
+        width: 60px;
         height: 55px;
     }
 
@@ -606,8 +639,8 @@ footer {
         height: 210px;
     }
 
-    .modal-box {
-        padding: 1.4rem;
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 </style>
@@ -619,11 +652,11 @@ footer {
 
 <aside>
     <nav class="side-menu">
-        <a href="#"><span class="side-icon">⌂</span>Accueil</a>
-        <a href="#projets"><span class="side-icon">▣</span>Projets</a>
-        <a onclick="openAcquis()"><span class="side-icon">🎓</span>Mes acquis</a>
-        <a onclick="openTools()"><span class="side-icon">⚙</span>Outils</a>
-        <a onclick="toggleContactBox()"><span class="side-icon">✉</span>Contact</a>
+        <a href="#"><span class="side-icon">⌂</span><span data-i18n="navHome">Accueil</span></a>
+        <a href="#projets"><span class="side-icon">▣</span><span data-i18n="navProjects">Projets</span></a>
+        <a onclick="openAcquis()"><span class="side-icon">🎓</span><span data-i18n="navAcquis">Mes acquis</span></a>
+        <a onclick="openTools()"><span class="side-icon">⚙</span><span data-i18n="navTools">Outils</span></a>
+        <a onclick="toggleContactBox()"><span class="side-icon">✉</span><span data-i18n="navContact">Contact</span></a>
         <a href="https://www.linkedin.com/in/guedoulyster97/" target="_blank" onclick="trackLinkedInClick()">
             <span class="side-icon linkedin-icon">in</span>LinkedIn
         </a>
@@ -633,6 +666,8 @@ footer {
 <main>
 
 <header>
+<button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">FR / EN</button>
+
 <section class="hero">
     <div class="photo-zone">
         <img src="images/photo_profil.jpg" alt="Photo de Lyster GUEDOU" class="profile-photo">
@@ -640,300 +675,65 @@ footer {
 
     <div class="hero-text">
         <h1>Lyster GUEDOU</h1>
-        <h2>Ingénieur R&D en mécatronique, systèmes embarqués et robotique intelligente</h2>
-        <p>
+        <h2 data-i18n="heroTitle">Ingénieur R&D en mécatronique, systèmes embarqués et robotique intelligente</h2>
+        <p data-i18n="heroText">
             Je travaille sur des systèmes qui mêlent mécanique, électronique, logiciel embarqué et automatisation.
             Mon objectif est simple : concevoir des solutions utiles, robustes et proches des besoins industriels.
         </p>
 
         <div class="hero-links">
-            <a href="mailto:guedoulyster@gmail.com" class="btn" onclick="trackContactClick()">Me contacter</a>
-            <a href="#feedback" class="btn feedback-btn" onclick="openFeedback()">Laisser un retour / Opportunité</a>
-            <a href="CV_Lyster_GUEDOU.pdf" class="btn secondary" target="_blank" onclick="trackCVDownload()">Télécharger mon CV</a>
+            <a href="mailto:guedoulyster@gmail.com" class="btn" onclick="trackContactClick()" data-i18n="btnContact">Me contacter</a>
+            <a href="#feedback" class="btn feedback-btn" onclick="openFeedback()" data-i18n="btnFeedback">Laisser un retour / Opportunité</a>
+            <a href="CV_Lyster_GUEDOU.pdf" class="btn secondary" target="_blank" onclick="trackCVDownload()" data-i18n="btnCV">Télécharger mon CV</a>
         </div>
     </div>
 </section>
 </header>
 
 <section class="content" id="projets">
-<h2 class="section-title">Projets et stages</h2>
 
-<details class="project-block" open ontoggle="trackProjectDetails(this, 'Diagnostic logiciel et maintenance prédictive - IETR')">
-    <summary>
-        <img src="images/robot_ietr.jpg" alt="">
+<div class="projects-list">
+    <h2 data-i18n="projectsTitle">Projets et stages</h2>
+    <div id="projectButtons"></div>
+</div>
+
+<div class="project-detail">
+    <div class="main-media" id="mainMedia"></div>
+    <h2 class="project-title" id="projectTitle"></h2>
+    <div class="tags" id="projectTags"></div>
+
+    <div class="detail-grid">
         <div>
-            <strong>Diagnostic logiciel et maintenance prédictive</strong>
-            <span>Stage systèmes embarqués - IETR</span>
-        </div>
-        <span class="arrow">›</span>
-    </summary>
-
-    <div class="project-body">
-        <div class="main-media">
-            <img src="images/robot_ietr.jpg" alt="Robot pédagogique IETR">
+            <div class="info-block"><h4 id="contextLabel">Contexte</h4><p id="projectContext"></p></div>
+            <div class="info-block"><h4 id="roleLabel">Mon rôle</h4><p id="projectRole"></p></div>
+            <div class="info-block"><h4 id="actionsLabel">Ce que j’ai fait</h4><ul id="projectActions"></ul></div>
+            <div class="info-block"><h4 id="resultsLabel">Résultat</h4><p id="projectResults"></p></div>
         </div>
 
-        <h2>Diagnostic logiciel et maintenance prédictive - IETR</h2>
-
-        <div class="tags">
-            <span class="tag">STM32</span>
-            <span class="tag">FreeRTOS</span>
-            <span class="tag">Python</span>
-            <span class="tag">I²C</span>
-            <span class="tag">UART</span>
-            <span class="tag">Maintenance</span>
-        </div>
-
-        <h4>Contexte</h4>
-        <p>
-            J’ai travaillé sur une flotte de robots pédagogiques qui présentaient plusieurs pannes possibles :
-            connectique, moteurs, écran LCD, capteurs et communication série.
-        </p>
-
-        <h4>Ce que j’ai fait</h4>
-        <ul>
-            <li>Développement d’un firmware de diagnostic sur STM32.</li>
-            <li>Organisation des tests avec FreeRTOS.</li>
-            <li>Tests bas niveau sur LCD, MCP23017, moteurs, encodeurs et capteurs.</li>
-            <li>Création d’une interface Python pour lire les logs et suivre l’état du robot.</li>
-        </ul>
-
-        <h4>Résultat</h4>
-        <p>
-            Le diagnostic est devenu plus clair et plus rapide. Les états du robot sont mieux tracés, ce qui facilite la maintenance.
-        </p>
-
-        <div class="gallery-grid">
-            <img src="images/robot_ietr.jpg" alt="">
-            <img src="images/carte_robot.jpg" alt="">
-            <img src="images/interface_python.jpg" alt="">
+        <div class="gallery">
+            <h4 id="galleryLabel">Galerie</h4>
+            <div class="gallery-grid" id="projectGallery"></div>
         </div>
     </div>
-</details>
+</div>
 
-<details class="project-block" ontoggle="trackProjectDetails(this, 'Dispositif mécatronique R&D - MatandSim')">
-    <summary>
-        <img src="images/decoquillateur/CAO_carroussel.png" alt="">
-        <div>
-            <strong>Dispositif mécatronique R&D</strong>
-            <span>Stage de fin d’étude - MatandSim</span>
-        </div>
-        <span class="arrow">›</span>
-    </summary>
-
-    <div class="project-body">
-        <div class="main-media">
-            <img src="images/decoquillateur/CAO_carroussel.png" alt="CAO du dispositif">
-        </div>
-
-        <h2>Dispositif mécatronique R&D - MatandSim</h2>
-
-        <div class="tags">
-            <span class="tag">R&D</span>
-            <span class="tag">Mécatronique</span>
-            <span class="tag">Prototypage</span>
-            <span class="tag">CAO</span>
-            <span class="tag">Conception mécanique</span>
-        </div>
-
-        <h4>Contexte</h4>
-        <p>
-            Le projet portait sur la conception d’un système automatisé pour l’ouverture mécanique des coquilles Saint-Jacques.
-        </p>
-
-        <h4>Ce que j’ai fait</h4>
-        <ul>
-            <li>Analyse du besoin et des contraintes mécaniques.</li>
-            <li>Recherche de solutions techniques.</li>
-            <li>Conception et prototypage du dispositif.</li>
-            <li>Tests et amélioration progressive de la solution.</li>
-        </ul>
-
-        <h4>Résultat</h4>
-        <p>
-            Le prototype a permis de valider les premiers choix mécaniques et de faire avancer la solution vers un fonctionnement plus fiable.
-        </p>
-
-        <div class="gallery-grid">
-            <img src="images/decoquillateur/CAO_carroussel.png" alt="">
-            <img src="images/decoquillateur/photo_decoquillator.jpg" alt="">
-            <a class="gallery-video" target="_blank" href="https://drive.google.com/file/d/14C_Kl7ObdSdrbGaYcL9rDzUiW6iUEwN-/preview" onclick="trackVideoLink('MatandSim - vidéo 1')">🎥 Voir la vidéo</a>
-            <a class="gallery-video" target="_blank" href="https://drive.google.com/file/d/1GhqjKKmMYSHVAn-B7kqHB2zxj8Y12O0C/preview" onclick="trackVideoLink('MatandSim - vidéo 2')">🎥 Voir la vidéo</a>
-        </div>
+<noscript>
+    <div class="fallback-projects">
+        JavaScript est désactivé. Les projets principaux sont visibles dans le code source de la page.
     </div>
-</details>
-
-<details class="project-block" ontoggle="trackProjectDetails(this, 'Maquette 5.0 - Tri automatisé')">
-    <summary>
-        <img src="images/maquette5.0/maquette_tri.jpg" alt="">
-        <div>
-            <strong>Maquette 5.0 - Tri automatisé</strong>
-            <span>Projet industriel</span>
-        </div>
-        <span class="arrow">›</span>
-    </summary>
-
-    <div class="project-body">
-        <div class="main-media">
-            <img src="images/maquette5.0/maquette_tri.jpg" alt="Maquette de tri automatisé">
-        </div>
-
-        <h2>Maquette 5.0 - Tri automatisé</h2>
-
-        <div class="tags">
-            <span class="tag">TIA Portal</span>
-            <span class="tag">Node-RED</span>
-            <span class="tag">Inventor</span>
-            <span class="tag">Automatisme</span>
-            <span class="tag">Industrie 5.0</span>
-        </div>
-
-        <h4>Contexte</h4>
-        <p>
-            Ce projet visait à transformer une maquette de tri de roues de skateboard en système automatisé, supervisé et connecté.
-        </p>
-
-        <h4>Ce que j’ai fait</h4>
-        <ul>
-            <li>Conception mécanique sous Inventor.</li>
-            <li>Fabrication de pièces par impression 3D.</li>
-            <li>Programmation de la logique sous TIA Portal.</li>
-            <li>Développement d’une interface Node-RED pour la supervision.</li>
-        </ul>
-
-        <h4>Résultat</h4>
-        <p>
-            La maquette permet de trier automatiquement les pièces et de suivre les informations utiles depuis une interface de supervision.
-        </p>
-
-        <div class="gallery-grid">
-            <img src="images/maquette5.0/maquette_tri.jpg" alt="">
-            <img src="images/maquette5.0/system_control_tri.jpg" alt="">
-            <img src="images/maquette5.0/tri_PAHM_intercafe.jpg" alt="">
-            <img src="images/maquette5.0/tri_desagn.jpg" alt="">
-            <img src="images/maquette5.0/tri_intercafe_IHM.jpg" alt="">
-            <a class="gallery-video" target="_blank" href="https://drive.google.com/file/d/1s_RzMaZa_VVdpBYYXUNfZhjX3QZMeAxI/preview" onclick="trackVideoLink('Tri automatisé - vidéo')">🎥 Voir la vidéo</a>
-        </div>
-    </div>
-</details>
-
-<details class="project-block" ontoggle="trackProjectDetails(this, 'Robot autonome intelligent')">
-    <summary>
-        <img src="images/robot_autonome.jpg" alt="">
-        <div>
-            <strong>Robot autonome intelligent</strong>
-            <span>Projet personnel</span>
-        </div>
-        <span class="arrow">›</span>
-    </summary>
-
-    <div class="project-body">
-        <div class="main-media">
-            <iframe src="https://drive.google.com/file/d/ID_VIDEO_ROBOT_AUTONOME/preview" title="Robot autonome" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </div>
-
-        <h2>Robot autonome intelligent</h2>
-
-        <div class="tags">
-            <span class="tag">Robotique</span>
-            <span class="tag">Raspberry Pi</span>
-            <span class="tag">Vision</span>
-            <span class="tag">Cartographie</span>
-            <span class="tag">Contrôle vocal</span>
-        </div>
-
-        <h4>Contexte</h4>
-        <p>
-            Ce projet personnel me permet de travailler sur un robot capable de percevoir son environnement et d’interagir avec l’utilisateur.
-        </p>
-
-        <h4>Ce que je développe</h4>
-        <ul>
-            <li>Reconnaissance d’objets avec caméra.</li>
-            <li>Base de cartographie de l’environnement.</li>
-            <li>Contrôle vocal simple.</li>
-            <li>Tests de navigation avec évitement d’obstacles.</li>
-        </ul>
-
-        <h4>Objectif</h4>
-        <p>
-            Construire un projet vitrine autour de la robotique mobile, de la vision embarquée et de l’intégration système.
-        </p>
-
-        <div class="gallery-grid">
-            <img src="images/robot_autonome.jpg" alt="">
-            <img src="images/camera_pi.jpg" alt="">
-            <img src="images/carte_navigation.jpg" alt="">
-        </div>
-    </div>
-</details>
-
-<details class="project-block" ontoggle="trackProjectDetails(this, 'Régulation de vitesse et asservissement thermique par IA')">
-    <summary>
-        <img src="images/Regulation_IA/bloc_sytem3D.png" alt="">
-        <div>
-            <strong>Asservissement intelligent par IA</strong>
-            <span>Projet Master 2</span>
-        </div>
-        <span class="arrow">›</span>
-    </summary>
-
-    <div class="project-body">
-        <div class="main-media">
-            <img src="images/Regulation_IA/bloc_sytem3D.png" alt="Système de régulation IA">
-        </div>
-
-        <h2>Régulation de vitesse et asservissement thermique par IA</h2>
-
-        <div class="tags">
-            <span class="tag">Contrôle-commande</span>
-            <span class="tag">PID adaptatif</span>
-            <span class="tag">Reinforcement Learning</span>
-            <span class="tag">DDPG</span>
-            <span class="tag">MATLAB / Simulink</span>
-            <span class="tag">PWM</span>
-        </div>
-
-        <h4>Contexte</h4>
-        <p>
-            Le projet porte sur un système thermo-méca-fluide. L’idée était de piloter à la fois la ventilation et le chauffage,
-            avec une commande plus adaptable qu’un réglage classique.
-        </p>
-
-        <h4>Ce que j’ai fait</h4>
-        <ul>
-            <li>Modélisation du système sous MATLAB / Simulink.</li>
-            <li>Mise en place d’un PID de référence.</li>
-            <li>Travail sur l’ajustement des gains avec des réseaux de neurones.</li>
-            <li>Test d’un agent DDPG pour la commande continue.</li>
-            <li>Comparaison des réponses selon les erreurs, la stabilité et le temps de réponse.</li>
-        </ul>
-
-        <h4>Résultat</h4>
-        <p>
-            Le projet a montré l’intérêt des approches intelligentes pour rendre la commande plus adaptable face aux perturbations.
-        </p>
-
-        <div class="gallery-grid">
-            <img src="images/Regulation_IA/bloc_sytem3D.png" alt="">
-            <img src="images/Regulation_IA/system_reg.png" alt="">
-            <img src="images/Regulation_IA/systeme_complet.jpg" alt="">
-            <a class="gallery-video" target="_blank" href="https://drive.google.com/file/d/1o5Y4AOC0cafkNb2ARcttfNodYjX6sb3f/preview" onclick="trackVideoLink('Régulation IA - vidéo')">🎥 Voir la vidéo</a>
-        </div>
-    </div>
-</details>
+</noscript>
 
 </section>
 
-<footer>
+<footer data-i18n="footerText">
 © 2026 Lyster GUEDOU - Portfolio ingénierie mécatronique et systèmes embarqués
 </footer>
 
 <div id="contactBox" class="contact-box">
-    <h3>Mes coordonnées</h3>
+    <h3 data-i18n="contactTitle">Mes coordonnées</h3>
     <p>📧 guedoulyster@gmail.com</p>
     <p>📱 07 52 07 68 07</p>
-    <a href="mailto:guedoulyster@gmail.com" class="btn" onclick="trackContactClick()">Me contacter</a>
+    <a href="mailto:guedoulyster@gmail.com" class="btn" onclick="trackContactClick()" data-i18n="btnContact">Me contacter</a>
 </div>
 
 </main>
@@ -942,24 +742,24 @@ footer {
 <div id="feedbackModal" class="modal">
     <div class="modal-box form-box">
         <span class="close-btn" onclick="closeFeedback()">&times;</span>
-        <h3>Retour / Opportunité</h3>
+        <h3 data-i18n="feedbackTitle">Retour / Opportunité</h3>
 
         <form action="https://formspree.io/f/xvzjarpp" method="POST">
-            <input type="text" name="name" placeholder="Nom" required>
-            <input type="text" name="company" placeholder="Entreprise">
+            <input type="text" name="name" placeholder="Nom" required data-placeholder-fr="Nom" data-placeholder-en="Name">
+            <input type="text" name="company" placeholder="Entreprise" data-placeholder-fr="Entreprise" data-placeholder-en="Company">
             <input type="email" name="email" placeholder="Email" required>
 
             <select name="type">
-                <option value="">Type de contact</option>
+                <option value="" data-i18n="formType">Type de contact</option>
                 <option>Recrutement</option>
                 <option>Collaboration</option>
                 <option>Stage</option>
                 <option>Autre</option>
             </select>
 
-            <textarea name="message" rows="5" placeholder="Votre message..." required></textarea>
+            <textarea name="message" rows="5" placeholder="Votre message..." required data-placeholder-fr="Votre message..." data-placeholder-en="Your message..."></textarea>
 
-            <button type="submit" class="btn" onclick="trackFeedbackSubmit()">Envoyer</button>
+            <button type="submit" class="btn" onclick="trackFeedbackSubmit()" data-i18n="formSend">Envoyer</button>
         </form>
     </div>
 </div>
@@ -967,103 +767,463 @@ footer {
 <div id="toolsModal" class="modal">
     <div class="modal-box">
         <span class="close-btn" onclick="closeTools()">&times;</span>
-        <h3>Outils maîtrisés</h3>
-
-        <div class="tools-grid">
-            <div class="tool-card">
-                <h4>Conception et simulation</h4>
-                <p>Inventor, SolidWorks, COMSOL, ABAQUS, RecurDyn, FEMM</p>
-            </div>
-            <div class="tool-card">
-                <h4>Systèmes embarqués</h4>
-                <p>STM32, FreeRTOS, ARM, FPGA, VHDL, Raspberry Pi, Arduino</p>
-            </div>
-            <div class="tool-card">
-                <h4>Robotique et automatisation</h4>
-                <p>ROS2, TIA Portal, Codesys, LabVIEW, Node-RED, langage C/C++</p>
-            </div>
-            <div class="tool-card">
-                <h4>IA et diagnostic intelligent</h4>
-                <p>Python, MATLAB, Reinforcement Learning, Data Mining, maintenance prédictive</p>
-            </div>
-            <div class="tool-card">
-                <h4>Communication industrielle</h4>
-                <p>I²C, UART, CAN, Modbus, PCCAN</p>
-            </div>
-        </div>
+        <h3 data-i18n="toolsTitle">Outils maîtrisés</h3>
+        <div id="toolsContent"></div>
     </div>
 </div>
 
 <div id="acquisModal" class="modal">
     <div class="modal-box">
         <span class="close-btn" onclick="closeAcquis()">&times;</span>
-
-        <h3>Mes acquis académiques</h3>
-        <p class="acquis-intro">
-            Mon parcours s’est construit étape par étape. J’ai commencé par la mécanique et la production,
-            puis j’ai élargi mes compétences vers la mécatronique, les systèmes intelligents et l’embarqué.
-        </p>
-
-        <div class="timeline">
-            <div class="timeline-item">
-                <span class="period">Licence Génie Mécanique et Productique</span>
-                <h4>Base industrielle et mécanique</h4>
-                <p>Conception mécanique, fabrication, maintenance, production et compréhension des systèmes industriels.</p>
-                <div class="acquis-tags">
-                    <span>Conception mécanique</span><span>Fabrication</span><span>Maintenance</span><span>Production</span>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <span class="period">Licence Mécatronique</span>
-                <h4>Mécanique, électronique et automatique</h4>
-                <p>Découverte des systèmes pluridisciplinaires avec de la mécanique, de l’électronique, de l’automatique, de la CAO et de la programmation.</p>
-                <div class="acquis-tags">
-                    <span>Mécanique</span><span>Électronique</span><span>Automatique</span><span>CAO</span><span>Programmation</span>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <span class="period">Master MESI</span>
-                <h4>Mécatronique, énergie et systèmes intelligents</h4>
-                <p>Travail sur l’IA appliquée, la supervision, ROS2, la maintenance prédictive, la simulation multiphysique et l’industrie 4.0.</p>
-                <div class="acquis-tags">
-                    <span>IA industrielle</span><span>Maintenance prédictive</span><span>ROS2</span><span>Supervision</span><span>Industrie 4.0</span>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <span class="period">Master EEEA - Systèmes Embarqués</span>
-                <h4>Approfondissement embarqué</h4>
-                <p>Travail sur STM32, FreeRTOS, FPGA, VHDL, architectures embarquées, sécurité, optimisation énergétique et contraintes temps réel.</p>
-                <div class="acquis-tags">
-                    <span>STM32</span><span>FreeRTOS</span><span>FPGA</span><span>VHDL</span><span>Sécurité embarquée</span><span>Temps réel</span>
-                </div>
-            </div>
-        </div>
+        <h3 data-i18n="acquisTitle">Mes acquis académiques</h3>
+        <p id="acquisIntro" class="timeline-item"></p>
+        <div id="acquisContent"></div>
     </div>
 </div>
 
 <script>
+let currentLang = "fr";
+let currentProjectIndex = 0;
+
+const ui = {
+    fr: {
+        navHome: "Accueil",
+        navProjects: "Projets",
+        navAcquis: "Mes acquis",
+        navTools: "Outils",
+        navContact: "Contact",
+        heroTitle: "Ingénieur R&D en mécatronique, systèmes embarqués et robotique intelligente",
+        heroText: "Je travaille sur des systèmes qui mêlent mécanique, électronique, logiciel embarqué et automatisation. Mon objectif est simple : concevoir des solutions utiles, robustes et proches des besoins industriels.",
+        btnContact: "Me contacter",
+        btnFeedback: "Laisser un retour / Opportunité",
+        btnCV: "Télécharger mon CV",
+        projectsTitle: "Projets et stages",
+        contextLabel: "Contexte",
+        roleLabel: "Mon rôle",
+        actionsLabel: "Ce que j’ai fait",
+        resultsLabel: "Résultat",
+        galleryLabel: "Galerie",
+        contactTitle: "Mes coordonnées",
+        feedbackTitle: "Retour / Opportunité",
+        formType: "Type de contact",
+        formSend: "Envoyer",
+        toolsTitle: "Outils maîtrisés",
+        acquisTitle: "Mes acquis académiques",
+        footerText: "© 2026 Lyster GUEDOU - Portfolio ingénierie mécatronique et systèmes embarqués",
+        videoText: "🎥 Voir la vidéo"
+    },
+    en: {
+        navHome: "Home",
+        navProjects: "Projects",
+        navAcquis: "Background",
+        navTools: "Tools",
+        navContact: "Contact",
+        heroTitle: "R&D Engineer in mechatronics, embedded systems and intelligent robotics",
+        heroText: "I work on systems that combine mechanics, electronics, embedded software and automation. My goal is simple: build useful, reliable solutions close to real industrial needs.",
+        btnContact: "Contact me",
+        btnFeedback: "Feedback / Opportunity",
+        btnCV: "Download my resume",
+        projectsTitle: "Projects and internships",
+        contextLabel: "Context",
+        roleLabel: "My role",
+        actionsLabel: "What I did",
+        resultsLabel: "Result",
+        galleryLabel: "Gallery",
+        contactTitle: "Contact details",
+        feedbackTitle: "Feedback / Opportunity",
+        formType: "Contact type",
+        formSend: "Send",
+        toolsTitle: "Tools and skills",
+        acquisTitle: "Academic background",
+        footerText: "© 2026 Lyster GUEDOU - Mechatronics and embedded systems engineering portfolio",
+        videoText: "🎥 Watch video"
+    }
+};
+
+const tools = {
+    fr: [
+        ["Conception et simulation", "Inventor, SolidWorks, COMSOL, ABAQUS, RecurDyn, FEMM"],
+        ["Systèmes embarqués", "STM32, FreeRTOS, ARM, FPGA, VHDL, Raspberry Pi, Arduino"],
+        ["Robotique et automatisation", "ROS2, TIA Portal, Codesys, LabVIEW, Node-RED, langage C/C++"],
+        ["IA et diagnostic intelligent", "Python, MATLAB, Reinforcement Learning, Data Mining, maintenance prédictive"],
+        ["Communication industrielle", "I²C, UART, CAN, Modbus, PCCAN"]
+    ],
+    en: [
+        ["Design and simulation", "Inventor, SolidWorks, COMSOL, ABAQUS, RecurDyn, FEMM"],
+        ["Embedded systems", "STM32, FreeRTOS, ARM, FPGA, VHDL, Raspberry Pi, Arduino"],
+        ["Robotics and automation", "ROS2, TIA Portal, Codesys, LabVIEW, Node-RED, C/C++"],
+        ["AI and smart diagnostics", "Python, MATLAB, Reinforcement Learning, Data Mining, predictive maintenance"],
+        ["Industrial communication", "I²C, UART, CAN, Modbus, PCCAN"]
+    ]
+};
+
+const acquis = {
+    fr: {
+        intro: "Mon parcours s’est construit étape par étape. J’ai commencé par la mécanique et la production, puis j’ai élargi mes compétences vers la mécatronique, les systèmes intelligents et l’embarqué.",
+        items: [
+            ["Licence Génie Mécanique et Productique", "Base industrielle et mécanique", "Conception mécanique, fabrication, maintenance, production et compréhension des systèmes industriels.", ["Conception mécanique", "Fabrication", "Maintenance", "Production"]],
+            ["Licence Mécatronique", "Mécanique, électronique et automatique", "Découverte des systèmes pluridisciplinaires avec de la mécanique, de l’électronique, de l’automatique, de la CAO et de la programmation.", ["Mécanique", "Électronique", "Automatique", "CAO", "Programmation"]],
+            ["Master MESI", "Mécatronique, énergie et systèmes intelligents", "Travail sur l’IA appliquée, la supervision, ROS2, la maintenance prédictive, la simulation multiphysique et l’industrie 4.0.", ["IA industrielle", "Maintenance prédictive", "ROS2", "Supervision", "Industrie 4.0"]],
+            ["Master EEEA - Systèmes Embarqués", "Approfondissement embarqué", "Travail sur STM32, FreeRTOS, FPGA, VHDL, architectures embarquées, sécurité, optimisation énergétique et contraintes temps réel.", ["STM32", "FreeRTOS", "FPGA", "VHDL", "Sécurité embarquée", "Temps réel"]]
+        ]
+    },
+    en: {
+        intro: "My background was built step by step. I started with mechanical engineering and production, then expanded toward mechatronics, intelligent systems and embedded technologies.",
+        items: [
+            ["Mechanical and Production Engineering", "Industrial and mechanical foundation", "Mechanical design, manufacturing, maintenance, production and understanding of industrial systems.", ["Mechanical design", "Manufacturing", "Maintenance", "Production"]],
+            ["Mechatronics Bachelor", "Mechanics, electronics and control", "Work on multidisciplinary systems combining mechanics, electronics, control, CAD and programming.", ["Mechanics", "Electronics", "Control", "CAD", "Programming"]],
+            ["MESI Master", "Mechatronics, energy and intelligent systems", "Applied AI, supervision, ROS2, predictive maintenance, multiphysics simulation and Industry 4.0.", ["Industrial AI", "Predictive maintenance", "ROS2", "Supervision", "Industry 4.0"]],
+            ["EEEA Master - Embedded Systems", "Advanced embedded systems", "STM32, FreeRTOS, FPGA, VHDL, embedded architectures, security, energy optimization and real-time constraints.", ["STM32", "FreeRTOS", "FPGA", "VHDL", "Embedded security", "Real time"]]
+        ]
+    }
+};
+
+const projects = {
+    fr: [
+        {
+            title: "Diagnostic logiciel et maintenance prédictive - IETR",
+            shortTitle: "Diagnostic logiciel et maintenance prédictive",
+            subtitle: "Stage systèmes embarqués - IETR",
+            mediaType: "image",
+            media: "images/robot_ietr.jpg",
+            thumb: "images/robot_ietr.jpg",
+            tags: ["STM32", "FreeRTOS", "Python", "I²C", "UART", "Maintenance"],
+            context: "J’ai travaillé sur une flotte de robots pédagogiques qui pouvaient présenter plusieurs pannes : connectique, moteurs, écran LCD, capteurs et communication série.",
+            role: "Développement du firmware de diagnostic embarqué et d’une interface de supervision PC.",
+            actions: [
+                "Développer un firmware de diagnostic sur STM32.",
+                "Organiser les tests avec FreeRTOS.",
+                "Tester les éléments bas niveau : LCD, MCP23017, moteurs, encodeurs et capteurs.",
+                "Créer une interface Python pour lire les logs et suivre l’état du robot."
+            ],
+            results: "Le diagnostic est devenu plus clair et plus rapide. Les états du robot sont mieux tracés, ce qui facilite la maintenance.",
+            gallery: [
+                { type: "image", src: "images/robot_ietr.jpg" },
+                { type: "image", src: "images/carte_robot.jpg" },
+                { type: "image", src: "images/interface_python.jpg" }
+            ]
+        },
+        {
+            title: "Dispositif mécatronique R&D - MatandSim",
+            shortTitle: "Dispositif mécatronique R&D",
+            subtitle: "Stage de fin d’étude - MatandSim",
+            mediaType: "image",
+            media: "images/decoquillateur/CAO_carroussel.png",
+            thumb: "images/decoquillateur/CAO_carroussel.png",
+            tags: ["R&D", "Mécatronique", "Prototypage", "CAO", "Conception mécanique"],
+            context: "Le projet portait sur la conception d’un système automatisé pour l’ouverture mécanique des coquilles Saint-Jacques.",
+            role: "Chef de projet R&D sur la partie conception et prototypage.",
+            actions: [
+                "Analyser le besoin et les contraintes mécaniques.",
+                "Chercher des solutions techniques réalistes.",
+                "Concevoir et prototyper le dispositif.",
+                "Tester puis améliorer progressivement la solution."
+            ],
+            results: "Le prototype a permis de valider les premiers choix mécaniques et de faire avancer la solution vers un fonctionnement plus fiable.",
+            gallery: [
+                { type: "image", src: "images/decoquillateur/CAO_carroussel.png" },
+                { type: "image", src: "images/decoquillateur/photo_decoquillator.jpg" },
+                { type: "video", src: "https://drive.google.com/file/d/14C_Kl7ObdSdrbGaYcL9rDzUiW6iUEwN-/preview" },
+                { type: "video", src: "https://drive.google.com/file/d/1GhqjKKmMYSHVAn-B7kqHB2zxj8Y12O0C/preview" }
+            ]
+        },
+        {
+            title: "Maquette 5.0 - Tri automatisé",
+            shortTitle: "Maquette 5.0 - Tri automatisé",
+            subtitle: "Projet industriel",
+            mediaType: "image",
+            media: "images/maquette5.0/maquette_tri.jpg",
+            thumb: "images/maquette5.0/maquette_tri.jpg",
+            tags: ["TIA Portal", "Node-RED", "Inventor", "Automatisme", "Industrie 5.0"],
+            context: "Ce projet visait à transformer une maquette de tri de roues de skateboard en système automatisé, supervisé et connecté.",
+            role: "Conception mécanique, automatisation et mise en place de la supervision.",
+            actions: [
+                "Concevoir la maquette sous Inventor.",
+                "Fabriquer certaines pièces en impression 3D.",
+                "Programmer la logique sous TIA Portal.",
+                "Développer une interface Node-RED pour la supervision."
+            ],
+            results: "La maquette permet de trier automatiquement les pièces et de suivre les informations utiles depuis une interface de supervision.",
+            gallery: [
+                { type: "image", src: "images/maquette5.0/maquette_tri.jpg" },
+                { type: "image", src: "images/maquette5.0/system_control_tri.jpg" },
+                { type: "image", src: "images/maquette5.0/tri_PAHM_intercafe.jpg" },
+                { type: "image", src: "images/maquette5.0/tri_desagn.jpg" },
+                { type: "image", src: "images/maquette5.0/tri_intercafe_IHM.jpg" },
+                { type: "video", src: "https://drive.google.com/file/d/1s_RzMaZa_VVdpBYYXUNfZhjX3QZMeAxI/preview" }
+            ]
+        },
+        {
+            title: "Robot autonome intelligent",
+            shortTitle: "Robot autonome intelligent",
+            subtitle: "Projet personnel",
+            mediaType: "video",
+            media: "https://drive.google.com/file/d/ID_VIDEO_ROBOT_AUTONOME/preview",
+            thumb: "images/robot_autonome.jpg",
+            tags: ["Robotique", "Raspberry Pi", "Vision", "Cartographie", "Contrôle vocal"],
+            context: "Ce projet personnel me permet de travailler sur un robot capable de percevoir son environnement et d’interagir avec l’utilisateur.",
+            role: "Conception du projet, intégration des capteurs, développement logiciel et tests.",
+            actions: [
+                "Travailler sur la reconnaissance d’objets avec caméra.",
+                "Mettre en place une base de cartographie de l’environnement.",
+                "Développer un contrôle vocal simple.",
+                "Tester la navigation avec évitement d’obstacles."
+            ],
+            results: "Le projet sert de vitrine autour de la robotique mobile, de la vision embarquée et de l’intégration système.",
+            gallery: [
+                { type: "image", src: "images/robot_autonome.jpg" },
+                { type: "image", src: "images/camera_pi.jpg" },
+                { type: "image", src: "images/carte_navigation.jpg" }
+            ]
+        },
+        {
+            title: "Régulation de vitesse et asservissement thermique par IA",
+            shortTitle: "Asservissement intelligent par IA",
+            subtitle: "Projet Master 2",
+            mediaType: "image",
+            media: "images/Regulation_IA/bloc_sytem3D.png",
+            thumb: "images/Regulation_IA/bloc_sytem3D.png",
+            tags: ["Contrôle-commande", "PID adaptatif", "Reinforcement Learning", "DDPG", "MATLAB / Simulink", "PWM"],
+            context: "Le projet porte sur un système thermo-méca-fluide. L’idée était de piloter à la fois la ventilation et le chauffage, avec une commande plus adaptable qu’un réglage classique.",
+            role: "Modélisation, choix des stratégies de commande et comparaison des résultats.",
+            actions: [
+                "Modéliser le système sous MATLAB / Simulink.",
+                "Mettre en place un PID de référence.",
+                "Travailler sur l’ajustement des gains avec des réseaux de neurones.",
+                "Tester un agent DDPG pour la commande continue.",
+                "Comparer les réponses selon l’erreur, la stabilité et le temps de réponse."
+            ],
+            results: "Le projet a montré l’intérêt des approches intelligentes pour rendre la commande plus adaptable face aux perturbations.",
+            gallery: [
+                { type: "image", src: "images/Regulation_IA/bloc_sytem3D.png" },
+                { type: "image", src: "images/Regulation_IA/system_reg.png" },
+                { type: "image", src: "images/Regulation_IA/systeme_complet.jpg" },
+                { type: "video", src: "https://drive.google.com/file/d/1o5Y4AOC0cafkNb2ARcttfNodYjX6sb3f/preview" }
+            ]
+        }
+    ],
+    en: []
+};
+
+projects.en = [
+    {
+        ...projects.fr[0],
+        title: "Software diagnostics and predictive maintenance - IETR",
+        shortTitle: "Software diagnostics and predictive maintenance",
+        subtitle: "Embedded systems internship - IETR",
+        context: "I worked on a fleet of educational robots that could face several issues: wiring, motors, LCD display, sensors and serial communication.",
+        role: "Development of the embedded diagnostic firmware and a PC supervision interface.",
+        actions: [
+            "Develop diagnostic firmware on STM32.",
+            "Organize tests with FreeRTOS.",
+            "Test low-level components: LCD, MCP23017, motors, encoders and sensors.",
+            "Build a Python interface to read logs and follow the robot status."
+        ],
+        results: "Diagnostics became clearer and faster. Robot states are easier to track, which helps maintenance."
+    },
+    {
+        ...projects.fr[1],
+        title: "Mechatronic R&D device - MatandSim",
+        shortTitle: "Mechatronic R&D device",
+        subtitle: "Final-year internship - MatandSim",
+        context: "The project focused on designing an automated system for the mechanical opening of scallops.",
+        role: "R&D project lead on the design and prototyping part.",
+        actions: [
+            "Analyze the need and mechanical constraints.",
+            "Explore realistic technical solutions.",
+            "Design and prototype the device.",
+            "Test and improve the solution step by step."
+        ],
+        results: "The prototype helped validate the first mechanical choices and move the solution toward a more reliable operation."
+    },
+    {
+        ...projects.fr[2],
+        title: "Industry 5.0 automated sorting mock-up",
+        shortTitle: "Industry 5.0 automated sorting mock-up",
+        subtitle: "Industrial project",
+        context: "This project aimed to turn a skateboard wheel sorting mock-up into an automated, supervised and connected system.",
+        role: "Mechanical design, automation and supervision setup.",
+        actions: [
+            "Design the mock-up with Inventor.",
+            "Manufacture some parts with 3D printing.",
+            "Program the logic in TIA Portal.",
+            "Develop a Node-RED interface for supervision."
+        ],
+        results: "The mock-up can automatically sort parts and display useful information through a supervision interface."
+    },
+    {
+        ...projects.fr[3],
+        title: "Intelligent autonomous robot",
+        shortTitle: "Intelligent autonomous robot",
+        subtitle: "Personal project",
+        context: "This personal project helps me work on a robot able to perceive its environment and interact with the user.",
+        role: "Project design, sensor integration, software development and testing.",
+        actions: [
+            "Work on object recognition with a camera.",
+            "Set up a first environment mapping approach.",
+            "Develop a simple voice control feature.",
+            "Test navigation with obstacle avoidance."
+        ],
+        results: "The project is a showcase for mobile robotics, embedded vision and system integration."
+    },
+    {
+        ...projects.fr[4],
+        title: "Speed control and thermal regulation using AI",
+        shortTitle: "AI-based intelligent control",
+        subtitle: "Master 2 project",
+        context: "The project focuses on a thermo-mecha-fluid system. The idea was to control both ventilation and heating with a more adaptive strategy than a fixed controller.",
+        role: "Modeling, control strategy selection and comparison of results.",
+        actions: [
+            "Model the system in MATLAB / Simulink.",
+            "Set up a reference PID controller.",
+            "Work on neural-network-based gain adjustment.",
+            "Test a DDPG agent for continuous control.",
+            "Compare responses through error, stability and response time."
+        ],
+        results: "The project showed the interest of intelligent control methods for improving adaptability under disturbances."
+    }
+];
+
 function sendEvent(name, params) {
     if (typeof gtag === "function") {
         gtag("event", name, params);
     }
 }
 
-function trackProjectDetails(element, title) {
-    if (element.open) {
-        sendEvent("view_project", {
-            event_category: "projects",
+function renderStaticText() {
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (ui[currentLang][key]) el.textContent = ui[currentLang][key];
+    });
+
+    document.getElementById("contextLabel").textContent = ui[currentLang].contextLabel;
+    document.getElementById("roleLabel").textContent = ui[currentLang].roleLabel;
+    document.getElementById("actionsLabel").textContent = ui[currentLang].actionsLabel;
+    document.getElementById("resultsLabel").textContent = ui[currentLang].resultsLabel;
+    document.getElementById("galleryLabel").textContent = ui[currentLang].galleryLabel;
+
+    document.querySelectorAll("[data-placeholder-fr]").forEach(el => {
+        el.placeholder = el.getAttribute(`data-placeholder-${currentLang}`);
+    });
+}
+
+function displayMedia(src, type, title = "Media") {
+    if (type === "video") {
+        sendEvent("video_play", {
+            event_category: "media",
             event_label: title
         });
     }
+
+    const mediaContainer = document.getElementById("mainMedia");
+
+    if (type === "video") {
+        mediaContainer.innerHTML = `
+            <iframe src="${src}" title="${title}" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        `;
+    } else {
+        mediaContainer.innerHTML = `<img src="${src}" alt="${title}">`;
+    }
 }
 
-function trackVideoLink(label) {
-    sendEvent("video_play", {
-        event_category: "media",
-        event_label: label
+function renderProjectButtons() {
+    const wrapper = document.getElementById("projectButtons");
+
+    wrapper.innerHTML = projects[currentLang].map((project, index) => `
+        <button class="project-button ${index === currentProjectIndex ? "active" : ""}" onclick="loadProject(${index})">
+            <img src="${project.thumb}" alt="">
+            <div>
+                <strong>${project.shortTitle}</strong>
+                <span>${project.subtitle}</span>
+            </div>
+            <span>›</span>
+        </button>
+    `).join("");
+}
+
+function loadProject(index) {
+    currentProjectIndex = index;
+    const project = projects[currentLang][index];
+
+    sendEvent("view_project", {
+        event_category: "projects",
+        event_label: project.title
+    });
+
+    renderProjectButtons();
+    displayMedia(project.media, project.mediaType, project.title);
+
+    document.getElementById("projectTitle").textContent = project.title;
+    document.getElementById("projectContext").textContent = project.context;
+    document.getElementById("projectRole").textContent = project.role;
+    document.getElementById("projectResults").textContent = project.results;
+
+    document.getElementById("projectTags").innerHTML = project.tags
+        .map(tag => `<span class="tag">${tag}</span>`)
+        .join("");
+
+    document.getElementById("projectActions").innerHTML = project.actions
+        .map(action => `<li>${action}</li>`)
+        .join("");
+
+    document.getElementById("projectGallery").innerHTML = project.gallery
+        .map(media => {
+            if (media.type === "video") {
+                return `
+                    <div class="gallery-video" onclick="trackGalleryClick('${project.title}', 'video'); displayMedia('${media.src}', 'video', '${project.title}')">
+                        ${ui[currentLang].videoText}
+                    </div>
+                `;
+            }
+
+            return `
+                <img src="${media.src}" alt="Media" onclick="trackGalleryClick('${project.title}', 'image'); displayMedia('${media.src}', 'image', '${project.title}')">
+            `;
+        })
+        .join("");
+}
+
+function toggleLanguage() {
+    currentLang = currentLang === "fr" ? "en" : "fr";
+    document.documentElement.lang = currentLang;
+    renderStaticText();
+    renderTools();
+    renderAcquis();
+    loadProject(currentProjectIndex);
+
+    sendEvent("language_switch", {
+        event_category: "engagement",
+        event_label: currentLang
+    });
+}
+
+function renderTools() {
+    document.getElementById("toolsContent").innerHTML = tools[currentLang].map(item => `
+        <div class="tool-card">
+            <h4>${item[0]}</h4>
+            <p>${item[1]}</p>
+        </div>
+    `).join("");
+}
+
+function renderAcquis() {
+    document.getElementById("acquisIntro").textContent = acquis[currentLang].intro;
+    document.getElementById("acquisContent").innerHTML = acquis[currentLang].items.map(item => `
+        <div class="timeline-item">
+            <span class="period">${item[0]}</span>
+            <h4>${item[1]}</h4>
+            <p>${item[2]}</p>
+            <div class="acquis-tags">
+                ${item[3].map(tag => `<span>${tag}</span>`).join("")}
+            </div>
+        </div>
+    `).join("");
+}
+
+function trackGalleryClick(projectTitle, mediaType) {
+    sendEvent("gallery_click", {
+        event_category: "gallery",
+        event_label: `${projectTitle} - ${mediaType}`
     });
 }
 
@@ -1094,6 +1254,7 @@ function closeFeedback() {
 
 function openTools() {
     document.getElementById("toolsModal").style.display = "flex";
+    renderTools();
     sendEvent("open_tools", {
         event_category: "engagement",
         event_label: "Outils maîtrisés"
@@ -1106,6 +1267,7 @@ function closeTools() {
 
 function openAcquis() {
     document.getElementById("acquisModal").style.display = "flex";
+    renderAcquis();
     sendEvent("open_acquis", {
         event_category: "engagement",
         event_label: "Acquis académiques"
@@ -1143,6 +1305,12 @@ function trackLinkedInClick() {
         event_label: "LinkedIn Portfolio"
     });
 }
+
+renderStaticText();
+renderTools();
+renderAcquis();
+renderProjectButtons();
+loadProject(0);
 </script>
 
 </body>
