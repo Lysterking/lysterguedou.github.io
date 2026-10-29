@@ -9,7 +9,10 @@
 <meta property="og:url" content="https://lysterguedou.github.io/" />
 <meta property="og:title" content="Lyster GUEDOU | Ingénieur mécatronique et systèmes embarqués" />
 <meta property="og:description" content="Mes stages et projets en mécatronique, systèmes embarqués et robotique." />
-<meta property="og:image" content="https://lysterguedou.github.io/images/photo_profil1.png" />
+<meta property="og:image" content="https://lysterguedou.github.io/images/photo_profil1.jpg" />
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32" />
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 <meta name="twitter:card" content="summary" />
 
 <!-- Google Analytics -->
@@ -735,7 +738,7 @@ footer {
 
 <section class="hero">
     <div class="photo-zone">
-        <img src="images/photo_profil1.png" alt="Photo de Lyster GUEDOU" class="profile-photo">
+        <img src="images/photo_profil1.jpg" alt="Photo de Lyster GUEDOU" class="profile-photo" width="180" height="180">
     </div>
 
     <div class="hero-text">
@@ -1141,6 +1144,26 @@ projects.en = [
     }
 ];
 
+const imageAlt = {
+    "images/robot_ietr.jpg": ["Robot pédagogique de l’IETR, carte électronique et moteurs visibles", "IETR educational robot with its board and motors visible"],
+    "images/robotInterface.png": ["Interface PC de diagnostic des robots de l’IETR", "PC diagnostic interface for the IETR robots"],
+    "images/decoquillateur/CAO_carroussel.png": ["Modèle CAO du carrousel du décoquilleur de Saint-Jacques", "CAD model of the scallop opener carousel"],
+    "images/decoquillateur/photo_decoquillator.jpg": ["Prototype du décoquilleur dans l’atelier", "Scallop opener prototype in the workshop"],
+    "images/maquette5.0/maquette_tri.jpg": ["Maquette de tri des roues de skateboard", "Skateboard wheel sorting mock-up"],
+    "images/maquette5.0/system_control_tri.jpg": ["Schéma de câblage de l’automate et des capteurs IO-Link", "Wiring diagram of the PLC and IO-Link sensors"],
+    "images/maquette5.0/tri_PAHM_intercafe.jpg": ["Architecture automate, IHM et passerelle IoT Node-RED", "PLC, HMI and Node-RED IoT gateway architecture"],
+    "images/maquette5.0/tri_desagn.jpg": ["Plans CAO de la maquette de tri sous Inventor", "Inventor CAD drawings of the sorting mock-up"],
+    "images/maquette5.0/tri_intercafe_IHM.jpg": ["Écrans de l’interface de supervision de la maquette", "Screens of the mock-up supervision interface"],
+    "images/Regulation_IA/bloc_sytem3D.png": ["Modèle 3D du système ventilation et chauffage", "3D model of the ventilation and heating system"],
+    "images/Regulation_IA/system_reg.png": ["Schéma de la boucle de commande par apprentissage par renforcement", "Reinforcement learning control loop diagram"],
+    "images/Regulation_IA/systeme_complet.jpg": ["Banc de régulation complet : ventilateur, boîtier de commande et PC", "Complete control test bench: fan, control box and PC"]
+};
+
+function altFor(src, fallback) {
+    const a = imageAlt[src];
+    return a ? a[currentLang === "fr" ? 0 : 1] : fallback;
+}
+
 function sendEvent(name, params) {
     if (typeof gtag === "function") {
         gtag("event", name, params);
@@ -1188,7 +1211,7 @@ function displayMedia(src, type, title = "Media") {
             <iframe src="${src}" title="${title}" allow="autoplay; fullscreen" allowfullscreen></iframe>
         `;
     } else {
-        mediaContainer.innerHTML = `<img src="${src}" alt="${title}">`;
+        mediaContainer.innerHTML = `<img src="${src}" alt="${altFor(src, title)}">`;
     }
 }
 
@@ -1200,7 +1223,7 @@ function renderProjectButtons() {
             ${
                 project.thumbType === "placeholder"
                 ? `<div class="project-thumb-placeholder">${ui[currentLang].inProgress}</div>`
-                : `<img src="${project.thumb}" alt="">`
+                : `<img src="${project.thumb}" alt="" loading="lazy">`
             }
             <div>
                 <strong>${project.shortTitle}</strong>
@@ -1254,7 +1277,7 @@ function loadProject(index) {
             }
 
             return `
-                <img src="${media.src}" alt="Media" onclick="trackGalleryClick('${project.title}', 'image'); displayMedia('${media.src}', 'image', '${project.title}')">
+                <img src="${media.src}" alt="${altFor(media.src, project.shortTitle)}" loading="lazy" onclick="trackGalleryClick('${project.title}', 'image'); displayMedia('${media.src}', 'image', '${project.title}')">
             `;
         })
         .join("");
