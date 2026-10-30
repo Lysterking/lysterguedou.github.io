@@ -906,17 +906,19 @@ const ui = {
 const tools = {
     fr: [
         ["Conception et simulation", "Inventor, SolidWorks, COMSOL, ABAQUS, RecurDyn, FEMM"],
-        ["Systèmes embarqués", "STM32, FreeRTOS, ARM, FPGA, VHDL, Raspberry Pi, Arduino"],
-        ["Robotique et automatisation", "ROS2, TIA Portal, Codesys, LabVIEW, Node-RED, langage C/C++"],
-        ["IA et diagnostic intelligent", "Python, MATLAB, Reinforcement Learning, Data Mining, maintenance prédictive"],
-        ["Communication industrielle", "I²C, UART, CAN, Modbus, PCCAN"]
+        ["Systèmes embarqués", "STM32, FreeRTOS, ARM, SoC-FPGA Zynq, VHDL, Raspberry Pi, Arduino, Controllino"],
+        ["Robotique et automatisation", "ROS2, TIA Portal (S7-1200), Codesys, LabVIEW, Node-RED, pneumatique, langage C/C++"],
+        ["IA et diagnostic intelligent", "Python, MATLAB, FFT, auto-encodeur, K-means, Reinforcement Learning, Data Mining, maintenance prédictive"],
+        ["Communication industrielle et IoT", "I²C, UART, SPI, CAN, JTAG, IO-Link, Modbus, PCCAN, Zigbee, LoRa"],
+        ["Données et méthodes", "MySQL, Git, plans d’expériences (Taguchi)"]
     ],
     en: [
         ["Design and simulation", "Inventor, SolidWorks, COMSOL, ABAQUS, RecurDyn, FEMM"],
-        ["Embedded systems", "STM32, FreeRTOS, ARM, FPGA, VHDL, Raspberry Pi, Arduino"],
-        ["Robotics and automation", "ROS2, TIA Portal, Codesys, LabVIEW, Node-RED, C/C++"],
-        ["AI and smart diagnostics", "Python, MATLAB, Reinforcement Learning, Data Mining, predictive maintenance"],
-        ["Industrial communication", "I²C, UART, CAN, Modbus, PCCAN"]
+        ["Embedded systems", "STM32, FreeRTOS, ARM, Zynq SoC-FPGA, VHDL, Raspberry Pi, Arduino, Controllino"],
+        ["Robotics and automation", "ROS2, TIA Portal (S7-1200), Codesys, LabVIEW, Node-RED, pneumatics, C/C++"],
+        ["AI and smart diagnostics", "Python, MATLAB, FFT, autoencoder, K-means, Reinforcement Learning, Data Mining, predictive maintenance"],
+        ["Industrial communication and IoT", "I²C, UART, SPI, CAN, JTAG, IO-Link, Modbus, PCCAN, Zigbee, LoRa"],
+        ["Data and methods", "MySQL, Git, design of experiments (Taguchi)"]
     ]
 };
 
@@ -944,22 +946,24 @@ const acquis = {
 const projects = {
     fr: [
         {
-            title: "Diagnostic logiciel et maintenance prédictive - IETR",
-            shortTitle: "Diagnostic logiciel et maintenance prédictive",
+            title: "Diagnostic embarqué et maintenance d’une flotte de robots - IETR",
+            shortTitle: "Diagnostic embarqué d’une flotte de robots",
             subtitle: "Stage systèmes embarqués - IETR",
             mediaType: "image",
             media: "images/robot_ietr.jpg",
             thumb: "images/robot_ietr.jpg",
-            tags: ["STM32", "FreeRTOS", "Python", "I²C", "UART", "Maintenance"],
-            context: "À l’IETR, une flotte de robots pédagogiques tombait régulièrement en panne : un câble mal branché, un moteur qui ne répond plus, un écran LCD muet, un capteur défaillant ou une liaison série qui coupe. Tout l’enjeu était de savoir vite d’où venait le problème.",
-            role: "J’ai écrit le firmware de diagnostic embarqué sur le robot, et l’interface PC qui va avec.",
+            tags: ["STM32", "FreeRTOS", "Python", "I²C", "UART", "Débogage matériel", "Maintenance"],
+            context: "À l’IETR, une flotte de 21 robots pédagogiques tombait régulièrement en panne : un câble mal branché, un moteur qui ne répond plus, un écran LCD muet, un capteur défaillant ou une liaison série qui coupe. Tout l’enjeu était de savoir vite d’où venait le problème.",
+            role: "J’ai remis la flotte en état, puis écrit le firmware de diagnostic embarqué sur le robot et l’application PC qui va avec.",
             actions: [
-                "J’ai écrit le firmware de diagnostic sur STM32.",
-                "J’ai organisé les tests en tâches FreeRTOS.",
-                "J’ai testé un par un les éléments bas niveau : écran LCD, MCP23017, moteurs, encodeurs, capteurs.",
-                "J’ai fait une interface Python pour lire les logs et suivre l’état du robot."
+                "J’ai inventorié les 21 robots et réparé ce qui devait l’être : soudures, connecteurs, 14 fusibles.",
+                "J’ai trouvé pourquoi les fusibles grillaient : des embouts de charge qu’on pouvait brancher à l’envers. Une gaine thermo repère maintenant la polarité.",
+                "J’ai écrit le firmware de diagnostic sur STM32, organisé en 7 tâches FreeRTOS (mutex sur le bus I²C, files de messages, tâche de sécurité prioritaire).",
+                "J’ai testé un par un les éléments bas niveau : écran LCD, MCP23017, moteurs et encodeurs, capteurs à ultrasons, microphone, Bluetooth, IMU.",
+                "Quand l’IMU restait invisible sur le bus I²C, j’ai lu le schéma : un défaut de PCB reliait SDA et SCL au 3,3 V. Je l’ai recâblée.",
+                "J’ai fait une application Python qui lance les tests, suit l’état du robot et programme la carte, sans installer STM32CubeIDE."
             ],
-            results: "Quand un robot a un souci, on voit maintenant beaucoup plus vite d’où il vient, et chaque état est enregistré. La maintenance est devenue nettement plus simple.",
+            results: "Quand un robot a un souci, on voit maintenant beaucoup plus vite d’où il vient, et chaque test est enregistré. La maintenance est devenue nettement plus simple.",
             gallery: [
                 { type: "image", src: "images/robot_ietr.jpg" },
                 { type: "image", src: "images/robotInterface.png" },
@@ -967,22 +971,23 @@ const projects = {
             ]
         },
         {
-            title: "Dispositif mécatronique R&D - MatandSim",
+            title: "Dispositif mécatronique R&D - MATandSIM",
             shortTitle: "Dispositif mécatronique R&D",
-            subtitle: "Stage de fin d’étude - MatandSim",
+            subtitle: "Stage de fin d’études - MATandSIM",
             mediaType: "image",
             media: "images/decoquillateur/CAO_carroussel.png",
             thumb: "images/decoquillateur/CAO_carroussel.png",
-            tags: ["R&D", "Mécatronique", "Prototypage", "CAO", "Conception mécanique"],
+            tags: ["R&D", "Mécatronique", "Prototypage", "CAO", "Pneumatique", "Controllino", "Plan d’expériences"],
             context: "Un sujet plutôt inattendu : concevoir une machine qui ouvre automatiquement les coquilles Saint-Jacques. C’est un geste simple à la main, beaucoup moins pour une machine.",
-            role: "J’étais chef de projet R&D sur la conception et le prototypage.",
+            role: "Ingénieur R&D mécatronique : j’ai repris, amélioré et prototypé les 4 postes de la machine, puis conçu leur intégration sur un carrousel.",
             actions: [
-                "J’ai commencé par bien cerner le besoin et les contraintes mécaniques.",
-                "J’ai comparé plusieurs pistes et gardé celles qu’on pouvait vraiment fabriquer.",
-                "J’ai conçu le dispositif en CAO, puis construit le prototype.",
-                "Je l’ai testé, corrigé, puis retesté, plusieurs fois."
+                "J’ai repris les 4 postes existants (ouverture, aspiration des viscères, décollement de la noix, évacuation), je les ai améliorés et prototypés, puis j’ai conçu leur intégration sur un carrousel.",
+                "J’ai renforcé le châssis, réaligné la ventouse et réglé la pneumatique : vérins, régulateurs de pression, limiteurs de débit, vide.",
+                "J’ai programmé le cycle sur Controllino MEGA : électrovannes, détecteurs Reed, temporisations.",
+                "J’ai mené 4 campagnes d’essais en atelier, avec une séquence d’à-coups inspirée d’une étude de l’IFREMER sur la fatigue des coquilles.",
+                "J’ai optimisé les réglages avec un plan d’expériences de Taguchi : 9 essais au lieu de 81."
             ],
-            results: "Le prototype a validé les premiers choix mécaniques, et la machine est devenue plus fiable au fil des essais.",
+            results: "7 coquilles sur 7 ouvertes sans intervention manuelle, et un meilleur cycle réussi à 13/13.",
             gallery: [
                 { type: "image", src: "images/decoquillateur/CAO_carroussel.png" },
                 { type: "image", src: "images/decoquillateur/photo_decoquillator.jpg" },
@@ -991,22 +996,70 @@ const projects = {
             ]
         },
         {
+            title: "Régulation de vitesse et asservissement thermique par IA",
+            shortTitle: "Asservissement intelligent par IA",
+            subtitle: "Projet Master 2",
+            mediaType: "image",
+            media: "images/Regulation_IA/bloc_sytem3D.png",
+            thumb: "images/Regulation_IA/bloc_sytem3D.png",
+            tags: ["Contrôle-commande", "PID adaptatif", "Reinforcement Learning", "DDPG", "MATLAB / Simulink", "PWM"],
+            context: "Un système thermo-méca-fluide avec deux choses à piloter en même temps : la ventilation et le chauffage. L’objectif : tenir 30 °C malgré un soufflant chauffant qui perturbe le banc. La question de départ : une commande intelligente s’adapte-t-elle mieux qu’un réglage classique ?",
+            role: "J’ai modélisé le système, choisi les stratégies de commande et comparé les résultats.",
+            actions: [
+                "J’ai modélisé le système sous MATLAB / Simulink.",
+                "J’ai réglé un PID classique pour avoir une référence.",
+                "J’ai prédit les gains du PID avec un réseau de neurones (R = 0,996).",
+                "J’ai entraîné un agent DDPG sous Simulink pour la commande continue.",
+                "J’ai piloté le banc réel en temps réel depuis MATLAB, via une Arduino Mega (capteurs LM35, ventilateur en PWM).",
+                "J’ai comparé les réponses : erreur, stabilité, temps de réponse."
+            ],
+            results: "Face aux perturbations, les commandes intelligentes se sont montrées plus adaptables que le réglage classique. Prochaine étape : faire tourner la commande directement sur la carte.",
+            gallery: [
+                { type: "image", src: "images/Regulation_IA/bloc_sytem3D.png" },
+                { type: "image", src: "images/Regulation_IA/system_reg.png" },
+                { type: "image", src: "images/Regulation_IA/systeme_complet.jpg" },
+                { type: "video", src: "https://drive.google.com/file/d/1o5Y4AOC0cafkNb2ARcttfNodYjX6sb3f/preview" }
+            ]
+        },
+        {
+            title: "Détection d’anomalies sur signaux de machine - Hackathon IA",
+            shortTitle: "Détection d’anomalies par IA",
+            subtitle: "Hackathon Master 2",
+            mediaType: "image",
+            media: "images/hackathon/fft_signaux.jpg",
+            thumb: "images/hackathon/clusters_anomalies.jpg",
+            tags: ["MATLAB", "FFT", "Extraction de features", "Auto-encodeur", "K-means", "Traitement du signal"],
+            context: "Cinq signaux enregistrés sur une machine industrielle, 240 000 points chacun, dont un seul connu comme sain. Deux questions : quels signaux trahissent un défaut, et combien de types de défauts différents ?",
+            role: "En équipe de 4, chacun a mené l’analyse complète, puis nous avons confronté nos résultats.",
+            actions: [
+                "J’ai passé les signaux dans le domaine fréquentiel avec une FFT.",
+                "J’ai découpé chaque signal en 250 fenêtres et extrait 12 caractéristiques temporelles et fréquentielles.",
+                "J’ai comparé plusieurs modèles : LSTM, One-class SVM, auto-encodeur et K-means.",
+                "Après une première conclusion incomplète, nous avons repris les modèles en tenant compte de la critique de notre professeur."
+            ],
+            results: "3 signaux défectueux identifiés, avec 2 types de défauts distincts.",
+            gallery: [
+                { type: "image", src: "images/hackathon/fft_signaux.jpg" },
+                { type: "image", src: "images/hackathon/clusters_anomalies.jpg" }
+            ]
+        },
+        {
             title: "Maquette 5.0 - Tri automatisé",
             shortTitle: "Maquette 5.0 - Tri automatisé",
-            subtitle: "Projet industriel",
+            subtitle: "Projet Master 1",
             mediaType: "image",
             media: "images/maquette5.0/maquette_tri.jpg",
             thumb: "images/maquette5.0/maquette_tri.jpg",
-            tags: ["TIA Portal", "Node-RED", "Inventor", "Automatisme", "Industrie 5.0"],
+            tags: ["TIA Portal", "S7-1200", "IO-Link", "Node-RED", "MySQL", "Inventor", "Industrie 5.0"],
             context: "Au départ, une maquette qui trie des roues de skateboard. Le but : la rendre automatique, supervisée et connectée.",
             role: "Je me suis occupé de la mécanique, de l’automatisme et de la supervision.",
             actions: [
                 "J’ai dessiné la maquette sous Inventor.",
                 "J’ai imprimé en 3D une partie des pièces.",
-                "J’ai programmé l’automate sous TIA Portal.",
-                "J’ai monté une interface Node-RED pour suivre le fonctionnement."
+                "J’ai programmé l’automate S7-1200 en ladder sous TIA Portal, avec un capteur couleur en IO-Link.",
+                "J’ai monté une supervision Node-RED reliée à une base MySQL, aussi déployée sur IBM Cloud."
             ],
-            results: "La maquette trie les roues toute seule, et on suit ce qui se passe depuis l’interface de supervision.",
+            results: "La maquette trie seule les roues vertes et les autres. Le capteur imposé ne voyait qu’une couleur à la fois : nous l’avons complété par un capteur de présence pour compter toutes les roues.",
             gallery: [
                 { type: "image", src: "images/maquette5.0/maquette_tri.jpg" },
                 { type: "image", src: "images/maquette5.0/system_control_tri.jpg" },
@@ -1015,6 +1068,25 @@ const projects = {
                 { type: "image", src: "images/maquette5.0/tri_intercafe_IHM.jpg" },
                 { type: "video", src: "https://drive.google.com/file/d/1s_RzMaZa_VVdpBYYXUNfZhjX3QZMeAxI/preview" }
             ]
+        },
+        {
+            title: "Portage de Klipper sur SoC-FPGA Zynq-7000 - IRISA",
+            shortTitle: "Portage de Klipper sur Zynq-7000",
+            subtitle: "Projet Master 2 - IRISA",
+            mediaType: "placeholder",
+            media: "",
+            thumbType: "placeholder",
+            thumb: "",
+            tags: ["Zynq-7000", "ARM Cortex-A9", "C", "Linux embarqué", "Vivado", "JTAG"],
+            context: "Klipper est un firmware d’impression 3D dont une partie tourne habituellement sur un microcontrôleur. Le projet : faire tourner cette partie sur une carte ZedBoard, qui associe un processeur ARM et un FPGA.",
+            role: "Je mène le portage de la partie microcontrôleur, à l’IRISA.",
+            actions: [
+                "J’étudie l’architecture de Klipper et de sa partie microcontrôleur.",
+                "Je la porte en C sur l’ARM Cortex-A9 de la ZedBoard, sous Linux embarqué et Vivado.",
+                "Je programme la carte en JTAG."
+            ],
+            results: "Le portage est en cours. Je mettrai des photos et des résultats ici au fil de l’avancement.",
+            gallery: []
         },
         {
             title: "Robot autonome intelligent",
@@ -1035,31 +1107,6 @@ const projects = {
             ],
             results: "Le robot est encore en construction. Je mettrai des photos et des vidéos ici dès que les premiers essais seront concluants.",
             gallery: []
-        },
-        {
-            title: "Régulation de vitesse et asservissement thermique par IA",
-            shortTitle: "Asservissement intelligent par IA",
-            subtitle: "Projet Master 2",
-            mediaType: "image",
-            media: "images/Regulation_IA/bloc_sytem3D.png",
-            thumb: "images/Regulation_IA/bloc_sytem3D.png",
-            tags: ["Contrôle-commande", "PID adaptatif", "Reinforcement Learning", "DDPG", "MATLAB / Simulink", "PWM"],
-            context: "Un système thermo-méca-fluide avec deux choses à piloter en même temps : la ventilation et le chauffage. La question de départ : une commande intelligente s’adapte-t-elle mieux qu’un réglage classique ?",
-            role: "J’ai modélisé le système, choisi les stratégies de commande et comparé les résultats.",
-            actions: [
-                "J’ai modélisé le système sous MATLAB / Simulink.",
-                "J’ai réglé un PID classique pour avoir une référence.",
-                "J’ai ajusté les gains avec des réseaux de neurones.",
-                "J’ai testé un agent DDPG pour la commande continue.",
-                "J’ai comparé les réponses : erreur, stabilité, temps de réponse."
-            ],
-            results: "Face aux perturbations, les commandes intelligentes se sont montrées plus adaptables que le réglage classique.",
-            gallery: [
-                { type: "image", src: "images/Regulation_IA/bloc_sytem3D.png" },
-                { type: "image", src: "images/Regulation_IA/system_reg.png" },
-                { type: "image", src: "images/Regulation_IA/systeme_complet.jpg" },
-                { type: "video", src: "https://drive.google.com/file/d/1o5Y4AOC0cafkNb2ARcttfNodYjX6sb3f/preview" }
-            ]
         }
     ],
     en: []
@@ -1068,51 +1115,103 @@ const projects = {
 projects.en = [
     {
         ...projects.fr[0],
-        title: "Software diagnostics and predictive maintenance - IETR",
-        shortTitle: "Software diagnostics and predictive maintenance",
+        title: "Embedded diagnostics and maintenance of a robot fleet - IETR",
+        shortTitle: "Embedded diagnostics for a robot fleet",
         subtitle: "Embedded systems internship - IETR",
-        context: "At IETR, a fleet of educational robots kept breaking down: a loose cable, a motor that stopped responding, a blank LCD, a faulty sensor or a dropped serial link. The real challenge was finding the cause quickly.",
-        role: "I wrote the embedded diagnostic firmware for the robot, and the PC interface that goes with it.",
+        tags: ["STM32", "FreeRTOS", "Python", "I²C", "UART", "Hardware debugging", "Maintenance"],
+        context: "At IETR, a fleet of 21 educational robots kept breaking down: a loose cable, a motor that stopped responding, a blank LCD, a faulty sensor or a dropped serial link. The real challenge was finding the cause quickly.",
+        role: "I brought the fleet back into working order, then wrote the embedded diagnostic firmware for the robot and the PC application that goes with it.",
         actions: [
-            "I wrote the diagnostic firmware on STM32.",
-            "I split the tests into FreeRTOS tasks.",
-            "I tested the low-level parts one by one: LCD, MCP23017, motors, encoders, sensors.",
-            "I built a Python interface to read the logs and follow the robot’s status."
+            "I inventoried the 21 robots and repaired what needed fixing: solder joints, connectors, 14 fuses.",
+            "I found out why the fuses kept blowing: charging plugs could be connected the wrong way round. Heat-shrink sleeves now mark the polarity.",
+            "I wrote the diagnostic firmware on STM32, organised into 7 FreeRTOS tasks (mutex on the I²C bus, message queues, high-priority safety task).",
+            "I tested the low-level parts one by one: LCD, MCP23017, motors and encoders, ultrasonic sensors, microphone, Bluetooth, IMU.",
+            "When the IMU stayed invisible on the I²C bus, I went through the schematic: a PCB fault tied SDA and SCL to 3.3 V. I rewired it.",
+            "I built a Python application that runs the tests, tracks the robot’s status and flashes the board, without installing STM32CubeIDE."
         ],
-        results: "When a robot has a problem, you now see much faster where it comes from, and every state is logged. Maintenance got a lot simpler."
+        results: "When a robot has a problem, you now see much faster where it comes from, and every test is logged. Maintenance got a lot simpler."
     },
     {
         ...projects.fr[1],
-        title: "Mechatronic R&D device - MatandSim",
+        title: "Mechatronic R&D device - MATandSIM",
         shortTitle: "Mechatronic R&D device",
-        subtitle: "Final-year internship - MatandSim",
+        subtitle: "Final-year internship - MATandSIM",
+        tags: ["R&D", "Mechatronics", "Prototyping", "CAD", "Pneumatics", "Controllino", "Design of experiments"],
         context: "A pretty unusual brief: design a machine that opens scallop shells automatically. Easy by hand, much harder for a machine.",
-        role: "I was the R&D project lead for design and prototyping.",
+        role: "Mechatronics R&D engineer: I took over, improved and prototyped the machine’s 4 stations, then designed their integration on a carousel.",
         actions: [
-            "I started by pinning down the need and the mechanical constraints.",
-            "I compared several options and kept the ones we could actually build.",
-            "I designed the device in CAD, then built the prototype.",
-            "I tested it, fixed it and tested it again, several times."
+            "I took over the 4 existing stations (opening, gut suction, meat release, removal), improved and prototyped them, then designed their integration on a carousel.",
+            "I stiffened the frame, realigned the suction cup and tuned the pneumatics: cylinders, pressure regulators, flow restrictors, vacuum.",
+            "I programmed the cycle on a Controllino MEGA: solenoid valves, Reed sensors, timers.",
+            "I ran 4 test campaigns in the workshop, with a jolt sequence inspired by an IFREMER study on shell fatigue.",
+            "I optimised the settings with a Taguchi design of experiments: 9 runs instead of 81."
         ],
-        results: "The prototype confirmed the first mechanical choices, and the machine became more reliable with each round of testing."
+        results: "7 out of 7 shells opened with no manual help, and a best cycle scoring 13/13."
     },
     {
         ...projects.fr[2],
+        title: "Speed control and thermal regulation using AI",
+        shortTitle: "AI-based intelligent control",
+        subtitle: "Master 2 project",
+        context: "A thermo-mecha-fluid system with two things to control at once: ventilation and heating. The goal: hold 30 °C despite a fan heater disturbing the bench. The starting question: does an intelligent controller adapt better than a classic one?",
+        role: "I modeled the system, chose the control strategies and compared the results.",
+        actions: [
+            "I modeled the system in MATLAB / Simulink.",
+            "I tuned a classic PID as a baseline.",
+            "I predicted the PID gains with a neural network (R = 0.996).",
+            "I trained a DDPG agent in Simulink for continuous control.",
+            "I drove the real bench in real time from MATLAB through an Arduino Mega (LM35 sensors, PWM-controlled fan).",
+            "I compared the responses: error, stability, response time."
+        ],
+        results: "Under disturbances, the intelligent controllers adapted better than the classic one. Next step: run the controller directly on the board."
+    },
+    {
+        ...projects.fr[3],
+        title: "Anomaly detection on machine signals - AI hackathon",
+        shortTitle: "AI anomaly detection",
+        subtitle: "Master 2 hackathon",
+        tags: ["MATLAB", "FFT", "Feature extraction", "Autoencoder", "K-means", "Signal processing"],
+        context: "Five signals recorded on an industrial machine, 240,000 points each, only one of them known to be healthy. Two questions: which signals reveal a fault, and how many different kinds of fault are there?",
+        role: "In a team of 4, each of us ran the full analysis, then we compared our results.",
+        actions: [
+            "I moved the signals into the frequency domain with an FFT.",
+            "I split each signal into 250 windows and extracted 12 time and frequency features.",
+            "I compared several models: LSTM, One-class SVM, autoencoder and K-means.",
+            "After an incomplete first conclusion, we reworked the models taking our professor’s feedback into account."
+        ],
+        results: "3 faulty signals identified, with 2 distinct types of fault."
+    },
+    {
+        ...projects.fr[4],
         title: "Industry 5.0 automated sorting mock-up",
         shortTitle: "Industry 5.0 automated sorting mock-up",
-        subtitle: "Industrial project",
+        subtitle: "Master 1 project",
         context: "It started as a mock-up that sorts skateboard wheels. The goal: make it automatic, supervised and connected.",
         role: "I handled the mechanics, the automation and the supervision.",
         actions: [
             "I designed the mock-up in Inventor.",
             "I 3D-printed some of the parts.",
-            "I programmed the PLC in TIA Portal.",
-            "I set up a Node-RED interface to monitor it."
+            "I programmed the S7-1200 PLC in ladder logic with TIA Portal, using an IO-Link colour sensor.",
+            "I set up Node-RED supervision connected to a MySQL database, also deployed on IBM Cloud."
         ],
-        results: "The mock-up sorts the wheels on its own, and you can follow what’s happening from the supervision interface."
+        results: "The mock-up sorts green wheels from the others on its own. The sensor we were given could only see one colour at a time, so we added a presence sensor to count every wheel."
     },
     {
-        ...projects.fr[3],
+        ...projects.fr[5],
+        title: "Porting Klipper to a Zynq-7000 SoC-FPGA - IRISA",
+        shortTitle: "Porting Klipper to Zynq-7000",
+        subtitle: "Master 2 project - IRISA",
+        context: "Klipper is a 3D-printing firmware, part of which usually runs on a microcontroller. The project: run that part on a ZedBoard, which pairs an ARM processor with an FPGA.",
+        role: "I’m leading the port of the microcontroller part, at IRISA.",
+        actions: [
+            "I’m studying the architecture of Klipper and its microcontroller part.",
+            "I’m porting it in C to the ZedBoard’s ARM Cortex-A9, with embedded Linux and Vivado.",
+            "I program the board over JTAG."
+        ],
+        results: "The port is in progress. I’ll add photos and results here as it moves forward."
+    },
+    {
+        ...projects.fr[6],
         title: "Intelligent autonomous robot",
         shortTitle: "Intelligent autonomous robot",
         subtitle: "Personal project",
@@ -1125,22 +1224,6 @@ projects.en = [
             "I’m testing navigation with obstacle avoidance."
         ],
         results: "The robot is still being built. I’ll add photos and videos here once the first tests work out."
-    },
-    {
-        ...projects.fr[4],
-        title: "Speed control and thermal regulation using AI",
-        shortTitle: "AI-based intelligent control",
-        subtitle: "Master 2 project",
-        context: "A thermo-mecha-fluid system with two things to control at once: ventilation and heating. The starting question: does an intelligent controller adapt better than a classic one?",
-        role: "I modeled the system, chose the control strategies and compared the results.",
-        actions: [
-            "I modeled the system in MATLAB / Simulink.",
-            "I tuned a classic PID as a baseline.",
-            "I adjusted the gains with neural networks.",
-            "I tested a DDPG agent for continuous control.",
-            "I compared the responses: error, stability, response time."
-        ],
-        results: "Under disturbances, the intelligent controllers adapted better than the classic one."
     }
 ];
 
@@ -1156,7 +1239,9 @@ const imageAlt = {
     "images/maquette5.0/tri_intercafe_IHM.jpg": ["Écrans de l’interface de supervision de la maquette", "Screens of the mock-up supervision interface"],
     "images/Regulation_IA/bloc_sytem3D.png": ["Modèle 3D du système ventilation et chauffage", "3D model of the ventilation and heating system"],
     "images/Regulation_IA/system_reg.png": ["Schéma de la boucle de commande par apprentissage par renforcement", "Reinforcement learning control loop diagram"],
-    "images/Regulation_IA/systeme_complet.jpg": ["Banc de régulation complet : ventilateur, boîtier de commande et PC", "Complete control test bench: fan, control box and PC"]
+    "images/Regulation_IA/systeme_complet.jpg": ["Banc de régulation complet : ventilateur, boîtier de commande et PC", "Complete control test bench: fan, control box and PC"],
+    "images/hackathon/fft_signaux.jpg": ["FFT superposée des cinq signaux de la machine", "Overlaid FFT of the five machine signals"],
+    "images/hackathon/clusters_anomalies.jpg": ["Anomalies détectées par K-means pour chaque signal", "Anomalies detected by K-means for each signal"]
 };
 
 function altFor(src, fallback) {
