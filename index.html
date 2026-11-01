@@ -1274,7 +1274,7 @@ function renderStaticText() {
     });
 }
 
-function displayMedia(src, type, title = "Media") {
+function displayMedia(src, type, title = "Media", track = true) {
     const mediaContainer = document.getElementById("mainMedia");
 
     if (type === "placeholder") {
@@ -1287,10 +1287,13 @@ function displayMedia(src, type, title = "Media") {
     }
 
     if (type === "video") {
-        sendEvent("video_play", {
-            event_category: "media",
-            event_label: title
-        });
+        if (track) {
+            sendEvent("video_view", {
+                event_category: "media",
+                event_label: title,
+                project_name: title
+            });
+        }
 
         mediaContainer.innerHTML = `
             <iframe src="${src}" title="${title}" allow="autoplay; fullscreen" allowfullscreen></iframe>
@@ -1319,17 +1322,21 @@ function renderProjectButtons() {
     `).join("");
 }
 
-function loadProject(index) {
+function loadProject(index, track = true) {
     currentProjectIndex = index;
     const project = projects[currentLang][index];
 
-    sendEvent("view_project", {
-        event_category: "projects",
-        event_label: project.title
-    });
+    // On ne compte que les projets ouverts par le visiteur (pas le chargement de la page)
+    if (track) {
+        sendEvent("view_project", {
+            event_category: "projects",
+            event_label: project.title,
+            project_name: project.title
+        });
+    }
 
     renderProjectButtons();
-    displayMedia(project.media, project.mediaType, project.title);
+    displayMedia(project.media, project.mediaType, project.title, track);
 
     document.getElementById("projectTitle").textContent = project.title;
     document.getElementById("projectContext").textContent = project.context;
@@ -1375,7 +1382,7 @@ function toggleLanguage() {
     renderStaticText();
     renderTools();
     renderAcquis();
-    loadProject(currentProjectIndex);
+    loadProject(currentProjectIndex, false);
 
     sendEvent("language_switch", {
         event_category: "engagement",
@@ -1498,7 +1505,7 @@ renderStaticText();
 renderTools();
 renderAcquis();
 renderProjectButtons();
-loadProject(0);
+loadProject(0, false);
 </script>
 
 </body>
